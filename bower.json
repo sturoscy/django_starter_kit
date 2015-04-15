@@ -1,0 +1,10 @@
+{
+  "name": "instruction_django_backbone",
+  "private": true,
+  "dependencies": {
+    "jquery-ui": "1.11.4",
+    "underscore": "~1.8.2",
+    "backbone": "~1.1.2",
+    "q": "~1.0.1"
+  }
+}

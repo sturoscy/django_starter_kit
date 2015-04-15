@@ -1,0 +1,67 @@
+# Python bytecode:
+*.py[co]
+
+# Packaging files:
+*.egg*
+
+# Sphinx docs:
+build
+
+# SQLite3 database files:
+*.db
+
+# Logs:
+logs/
+*.log
+
+# Eclipse
+.project
+.pydevproject
+
+# Linux Editors
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+*.swo
+
+# Mac
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Dev tools
+.idea
+.vagrant
+
+# SQLite
+*.sqlite3
+
+# Test Coverage Suite
+.coverage
+
+# projects dir
+projects/
+
+# static files
+static/
+static_dev/bower_components
+
+# HTML coverage
+htmlcov/
+
+# Node
+node_modules/
+node-v0.12.0/
+npm-debug.log
+
+# sqlite3
+db.sqlite3
