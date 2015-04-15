@@ -1,5 +1,5 @@
 {
-  "name": "instruction_django_backbone",
+  "name": "django_starter_kit",
   "private": true,
   "dependencies": {
     "jquery-ui": "1.11.4",
