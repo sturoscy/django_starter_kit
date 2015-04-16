@@ -1,4 +1,3 @@
-
 # Log Settings
 
 ROLLBAR = {
