@@ -27,7 +27,7 @@ ALLOWED_HOSTS = []
 
 # Define Admins Contacts
 ADMINS = (
-    ('user_name', 'admin_email@address.net'),
+    ('user_name', 'user_name@wharton.upenn.edu'),
 )
 MANAGERS = ADMINS
 

@@ -1,6 +1,13 @@
 
 # Log Settings
 
+ROLLBAR = {
+    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': '/absolute/path/to/code/root',
+}
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -20,7 +27,7 @@ LOGGING = {
 		    '()': 'django.utils.log.RequireDebugFalse',
 	    },
 	    'require_debug_true': {
-        '()': 'django.utils.log.RequireDebugTrue',
+            '()': 'django.utils.log.RequireDebugTrue',
       },
     },
     'handlers': {
@@ -35,10 +42,11 @@ LOGGING = {
 	        'class': 'logging.StreamHandler',
 	        'formatter': 'simple'
         },
-	        'mail_admins': {
-				    'level': 'CRITICAL',
-				    'filters' : ['require_debug_false'],
-				    'class': 'django.utils.log.AdminEmailHandler'
+	    'mail_admins': {
+		    'level': 'CRITICAL',
+		    'filters' : ['require_debug_false'],
+		    'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
 	     },
     },
     'loggers': {
@@ -51,11 +59,6 @@ LOGGING = {
 	        'handlers': ['mail_admins'],
 	        'level': 'CRITICAL',
 	        'propagate': False,
-        },
-        'dsk' : {
-	        'handlers': ['console','file', 'mail_admins'],
-	        'level' : 'DEBUG',
-	        'propagate': True,
         },
     },
 }
