@@ -19,7 +19,6 @@ DEBUG_TOOLBAR_PATCH_SETTINGS = True
 
 INSTALLED_APPS += (
     'debug_toolbar',
-    'functional_tests',
 )
 
 MIDDLEWARE_CLASSES += (
