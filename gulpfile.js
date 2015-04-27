@@ -82,7 +82,7 @@ gulp.task('eco', function() {
 // SASS Task
 // Compiles, concats, minifies, and versions scss files
 gulp.task('sass', function() {
-    return gulp.src(['static_dev/sass/**/*.scss'])
+    return gulp.src(['static_dev/scss/**/*.scss'])
         .pipe($.sass({
             outputStyle: 'nested',
             precision: 10,

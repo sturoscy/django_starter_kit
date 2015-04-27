@@ -1,5 +1,10 @@
 # Log Settings
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+DEBUG = True
+
 ROLLBAR = {
     'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
     'environment': 'development' if DEBUG else 'production',
@@ -34,7 +39,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
             'filters': ['require_debug_true'],
-            'filename': 'logs/django_dev.log',
+            'filename': BASE_DIR + '/logs/django_dev.log',
         },
         'console': {
 	        'level': 'DEBUG',

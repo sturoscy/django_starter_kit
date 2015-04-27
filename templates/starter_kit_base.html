@@ -1,16 +1,16 @@
 {% extends "left_sidebar.html" %}
 
-{% load static %}
+{% load staticfiles %}
 {% load compress %}
 
 {% block site_title %}Your Application Name{% endblock site_title %}
 
 {% block extra_head_top %}
   {% compress js %}
-    <script type="text/javascript" src='/static/javascripts/rollbar.js'></script>
+    <script type="text/javascript" src='{% static 'javascripts/rollbar.js' %}'></script>
   {% endcompress %}
   {% compress css %}
-    <link rel="stylesheet" href="static/scss/compiled_css/custom.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href='{% static 'scss/compiled_css/custom.css' %}' type="text/css" charset="utf-8">
   {% endcompress %}
 {% endblock extra_head_top %}
 
@@ -19,10 +19,10 @@
 {% block extra_footer_js %}
   {% compress js %}
     <!-- Vendor Files --> 
-    <script type="text/javascript" src='/static/javascripts/vendor.js'></script>
+    <script type="text/javascript" src='{% static 'javascripts/vendor.js' %}'></script>
 
     <!-- Project Files -->
-    <script type="text/javascript" src='/static/javascripts/templates.js'></script>
-    <script type="text/javascript" src='/static/javascripts/app.js'></script>
+    <script type="text/javascript" src='{% static 'javascripts/templates.js' %}'></script>
+    <script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>
   {% endcompress %}
 {% endblock extra_footer_js %}

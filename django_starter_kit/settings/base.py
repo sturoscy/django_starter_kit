@@ -13,10 +13,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
-# Import logging.py file
-
-from .logging import *
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -41,7 +37,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
     'bootstrap3',
     'base_theme',
     'rest_framework',
@@ -82,10 +77,9 @@ USE_TZ = True
 STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
 )
 
-STATIC_URL = '/static/'
+STATIC_URL = '/django_starter_kit/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_dev"),
@@ -98,14 +92,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-# Bower assets
+# Import logging.py file
 
-BOWER_COMPONENTS_ROOT = '/django_starter_kit/static_dev/bower_components/'
-
-# BOWER_INSTALLED_APPS should be in sync with bower.json at project root
-BOWER_INSTALLED_APPS = (
-    'jquery-ui#1.11.4',
-    'underscore#1.8.2',
-    'backbone#1.1.2',
-    'q#1.0.1',
-)
+from .logging import *
