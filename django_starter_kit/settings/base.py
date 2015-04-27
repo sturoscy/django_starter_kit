@@ -21,12 +21,11 @@ SECRET_KEY = 't!va3s+a$jnxeg*_^@l)!e!nk6nl*e2s%bl%tl6a+rx)kqvq=0'
 
 ALLOWED_HOSTS = []
 
-# Define Admins Contacts
+# Define Admins Contacts (for use with custom Django logging)
+
 ADMINS = (
     ('user_name', 'user_name@wharton.upenn.edu'),
 )
-MANAGERS = ADMINS
-
 
 # Application definition
 INSTALLED_APPS = (
@@ -92,6 +91,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-# Import logging.py file
+# If overriding Django's default logging, uncomment:
+# from .logging import *
 
-from .logging import *
+

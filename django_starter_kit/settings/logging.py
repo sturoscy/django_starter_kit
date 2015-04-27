@@ -1,16 +1,25 @@
-# Log Settings
+## Error & Log Exception Settings ##
 
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 DEBUG = True
 
+# Rollbar settings. Rollbar handles app exceptions only.
+# For more information on how to integrate rollbar, go here https://github.com/rollbar/pyrollbar
+
 ROLLBAR = {
-    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+    'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
     'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
-    'root': '/absolute/path/to/code/root',
+    'branch': 'develop',
+    'root': '/path/to/code/root',
 }
+
+# If you want to override Django's default logging, you
+# can do that by creating a logging dictionary configuration like the
+# example below and importing it in your base settings. You can
+# then create logging calls in your code. 
+# To learn more about Django Logging go here https://docs.djangoproject.com/en/1.7/topics/logging.
 
 LOGGING = {
     'version': 1,
@@ -35,27 +44,32 @@ LOGGING = {
       },
     },
     'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filters': ['require_debug_true'],
-            'filename': BASE_DIR + '/logs/django_dev.log',
-        },
+        #'file': {  ## uncomment to add log file. You have to create the directory and file as well. ##
+            #'level': 'DEBUG',
+            #'class': 'logging.FileHandler',
+            #'filters': ['require_debug_true'],
+            #'filename': BASE_DIR + '/logs/log_file.log', 
+        #},
         'console': {
 	        'level': 'DEBUG',
 	        'class': 'logging.StreamHandler',
 	        'formatter': 'simple'
         },
-	    'mail_admins': {
-		    'level': 'CRITICAL',
-		    'filters' : ['require_debug_false'],
-		    'class': 'django.utils.log.AdminEmailHandler',
+	      'mail_admins': {
+		      'level': 'CRITICAL',
+		      'filters' : ['require_debug_false'],
+		      'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
-	     },
+	      },
     },
     'loggers': {
+	      #'django.request': {
+           # 'handlers': ['file'],
+           # 'level': 'DEBUG',
+           # 'propagate': True,
+        #},
         'django.request': {
-            'handlers': ['file'],
+            'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
         },

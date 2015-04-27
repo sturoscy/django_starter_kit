@@ -39,10 +39,3 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
 }
-
-ROLLBAR = {
-    'access_token': '39b8de9527484878a2432949aef3dd0f',
-    'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
-    'root': '/vagrant/python-dev/html/django_starter_kit',
-}
