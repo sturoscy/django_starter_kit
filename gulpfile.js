@@ -21,7 +21,7 @@ gulp.task('serve', function() {
         'static_dev/coffeescripts/**/routers/*',
     ], ['coffee']);
     gulp.watch('static_dev/coffeescripts/**/templates/*.eco', ['eco']);
-    gulp.watch('static_dev/sass/**/*.scss', ['sass']);
+    gulp.watch('static_dev/scss/**/*.scss', ['sass']);
     gulp.watch(['static/javascripts/*.js', 'static/stylesheets/*.css']).on('change', reload);
 });
 
