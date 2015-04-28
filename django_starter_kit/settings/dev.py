@@ -40,9 +40,11 @@ DATABASES = {
     },
 }
 
+# Rollbar settings
+
 ROLLBAR = {
-    'access_token': '39b8de9527484878a2432949aef3dd0f',
+    'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
     'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
-    'root': '/vagrant/python-dev/html/django_starter_kit',
+    'branch': 'develop',
+    'root': '/path/to/code/root',
 }
