@@ -62,6 +62,10 @@ gulp.task('javascripts', function() {
     return gulp.src(
         [
             'static_dev/javascripts/**/*.js'
+            'static_dev/javascripts/**/models/*', 
+            'static_dev/javascripts/**/collections/*', 
+            'static_dev/javascripts/**/views/*',
+            'static_dev/javascripts/**/routers/*',
         ]
     )
     .pipe($.concat('app.js'))
