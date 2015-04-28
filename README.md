@@ -18,6 +18,7 @@
 
 ### Introduction
 Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
+Built using Django v 1.7.7.
 
 ### Plugins Include
 - Django Rest Framework
@@ -59,12 +60,14 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 
 ### Error Handling with Rollbar
 
-####Overview & Links
+####Overview
+Rollbar is a plugin that reports on your application's exceptions and errors. Learn more via the links below:
 
-- Rollbar reports on application exceptions and errors.
+####Links
   - Git: https://github.com/rollbar/pyrollbar
   - Website: https://rollbar.com/docs/notifier/pyrollbar/
-  - Rollbar docs: https://rollbar.com/docs/
+  - Rollbar overview: https://rollbar.com/docs/
+  - Rollbar Error Tracking: https://rollbar.com/error-tracking/
 
 ####Installation
 
@@ -85,12 +88,11 @@ Add this to your base.py file:
 
 ####Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
-- From there, create your project in the dashboard and set your token key in your 
-  settings dictionary
-  configuration
+- From there, create your own project in the dashboard and set your token key in your 
+  settings dictionary configuration.
 
 #### Custom Rollbar Handling
-You can also set rollbar error reporting manually, by adding functions this to your code:
+You can also set Rollbar error reporting manually, by adding functions like this to your code:
 
 <pre><code>rollbar.report_message('Got an IOError in the main loop', 'warning')</code></pre>
 
