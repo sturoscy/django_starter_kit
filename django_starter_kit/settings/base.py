@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 't!va3s+a$jnxeg*_^@l)!e!nk6nl*e2s%bl%tl6a+rx)kqvq=0'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [*]
 
 # Define Admins Contacts (for use with custom Django logging)
 # ADMINS = (
@@ -52,6 +52,16 @@ MIDDLEWARE_CLASSES = (
     'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Tell Django where to find templates.
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
 ROOT_URLCONF = 'django_starter_kit.urls'
 
 WSGI_APPLICATION = 'django_starter_kit.wsgi.application'
@@ -70,6 +80,29 @@ USE_L10N = True
 
 USE_TZ = True
 
+# REST FRAMEWORK
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'PAGINATE_BY': 50
+}
+
+# Dev Databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+}
+
 # Static Files
 
 STATICFILES_FINDERS = (
@@ -78,17 +111,17 @@ STATICFILES_FINDERS = (
 )
 
 STATIC_URL = '/django_starter_kit/static/'
-
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_dev"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-# Tell Django where to find templates.
-
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'templates'),
-)
+ROLLBAR = {
+    'access_token': '18d9720e59f84ed98a8be9977ba22526',
+    'environment': 'production',
+    'branch': 'master',
+    'root': '/var/www/html/wisp',
+}
 
 # If overriding Django's default logging:
 # from .logging import *

@@ -1,16 +1,8 @@
 from .base import *
 
-# Turn on DEBUG and TEMPLATE_DEBUG, but only in dev; these are set to False in base.py, and overridden here.
-
 DEBUG = True
+
 TEMPLATE_DEBUG = True
-
-# Set up your static paths - maybe just keep this in base?
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
-
-# Allows show Django debug toolbar in dev.
 
 def custom_show_toolbar(self):
     return True
@@ -21,9 +13,7 @@ INSTALLED_APPS += (
     'debug_toolbar',
 )
 
-MIDDLEWARE_CLASSES += (
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-)
+MIDDLEWARE_CLASSES = ('debug_toolbar.middleware.DebugToolbarMiddleware',) + MIDDLEWARE_CLASSES
 
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': 'django_starter_kit.settings.dev.custom_show_toolbar',
@@ -31,20 +21,9 @@ DEBUG_TOOLBAR_CONFIG = {
 
 INTERNAL_IPS = ('127.0.0.1', '128.91.*.*',)
 
-# Dev Databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    },
-}
-
-# Rollbar settings
-
 ROLLBAR = {
     'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
-    'environment': 'development' if DEBUG else 'production',
+    'environment': 'development',
     'branch': 'develop',
-    'root': '/path/to/code/root',
+    'root': '/var/www/html/<app>',
 }

@@ -14,6 +14,7 @@ gulp.task('serve', function() {
     browserSync({ proxy: 'http://localhost:8001' });
 
     gulp.watch([
+        'static_dev/coffeescripts/*.coffee',
         'static_dev/coffeescripts/**/*.coffee',
         'static_dev/coffeescripts/**/models/*', 
         'static_dev/coffeescripts/**/collections/*', 
@@ -34,6 +35,10 @@ gulp.task('bower', function() {
         .pipe($.uglify())
         .pipe(gulp.dest('static/javascripts'))
         .pipe($.filter('*.js').restore())
+        .pipe($.filter('*.css'))
+        .pipe($.concat('vendor.css'))
+        .pipe(gulp.dest('static/stylesheets'))
+        .pipe($.filter('*.css').restore())
 });
 
 // Coffeescript task
@@ -42,6 +47,7 @@ gulp.task('bower', function() {
 gulp.task('coffee', function() {
     return gulp.src(
         [
+            'static_dev/coffeescripts/*.coffee',
             'static_dev/coffeescripts/**/*.coffee',
             'static_dev/coffeescripts/**/models/*', 
             'static_dev/coffeescripts/**/collections/*', 
@@ -61,6 +67,7 @@ gulp.task('coffee', function() {
 gulp.task('javascripts', function() {
     return gulp.src(
         [
+            'static_dev/javascripts/*.js',
             'static_dev/javascripts/**/*.js'
             'static_dev/javascripts/**/models/*', 
             'static_dev/javascripts/**/collections/*', 
@@ -86,7 +93,10 @@ gulp.task('eco', function() {
 // SASS Task
 // Compiles, concats, minifies, and versions scss files
 gulp.task('sass', function() {
-    return gulp.src(['static_dev/scss/**/*.scss'])
+    return gulp.src([
+        'static_dev/scss/*.scss',
+        'static_dev/scss/**/*.scss'
+    ])
         .pipe($.sass({
             outputStyle: 'nested',
             precision: 10,
@@ -97,7 +107,7 @@ gulp.task('sass', function() {
         .pipe($.postcss([
             require('autoprefixer-core')({ browsers: ['last 1 version'] })
         ]))
-        .pipe(gulp.dest('static/scss/compiled_css'))
+        .pipe(gulp.dest('static/stylesheets/'))
 });
 
 // Images Task
@@ -114,4 +124,4 @@ gulp.task('images', function() {
 
 // Define the tasks
 gulp.task('default', ['serve']);
-gulp.task('build', ['bower', 'coffee', 'eco', 'images', 'sass']);
+gulp.task('build', ['bower', 'coffee', 'javascripts', 'eco', 'images', 'sass']);
