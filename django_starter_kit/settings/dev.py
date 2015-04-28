@@ -39,3 +39,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     },
 }
+
+# Rollbar settings
+
+ROLLBAR = {
+    'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'develop',
+    'root': '/path/to/code/root',
+}
