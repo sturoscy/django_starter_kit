@@ -100,52 +100,52 @@ Vendor files are managed through [bower](http://bower.io). Your vendor requireme
 		- run `./bower install`
 		- run `./gulp bower`
 - running `./gulp bower` will concat and minimize all vendor files to static/javascripts/vendor.js and static/stylesheets/vendor.css
-		- add vendor javascripts to any template using:
-		```
-		{% compress js %}
-			<script type="text/javascript" src='{% static 'javascripts/vendor.js' %}'></script>
-		{% endcompress %}
-		```
-		- add vendor Stylesheets to any template using:
-		```
-		{% compress css %}
-			<link rel="stylesheet" href='{% static 'stylesheets/vendor.css' %}' type="text/css" charset="utf-8">
-		{% endcompress %}
-		```
+	- add vendor javascripts to any template using:
+	<pre><code>
+	{% compress js %}
+		<script type="text/javascript" src='{% static 'javascripts/vendor.js' %}'></script>
+	{% endcompress %}
+	</code></pre>
+	- add vendor Stylesheets to any template using:
+	```
+	{% compress css %}
+		<link rel="stylesheet" href='{% static 'stylesheets/vendor.css' %}' type="text/css" charset="utf-8">
+	{% endcompress %}
+	```
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
 
 #### JavaScripts ####
 The Starter Kit comes with Backbone and Underscore installed via the bower.json file. Backbone apps are scaffolded as follows:
 ```
 |-- static_dev
-		|-- javascripts
-				|-- <app1>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.js
-				|-- <app2>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.js
-				...
-				|-- <appn>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.js
+	|-- javascripts
+		|-- <app1>
+			|-- models
+				|-- collections
+				|-- views
+				|-- routers
+				|-- main.js
+		|-- <app2>
+				|-- models
+				|-- collections
+				|-- views
+				|-- routers
+				|-- main.js
+		...
+		|-- <appn>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.js
 ```
 
 If you don't want to use Backbone or Underscore in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
 ```
 |-- static_dev
-		|-- javascripts
-			|-- <app>
-					|-- *.js
+	|-- javascripts
+		|-- <app>
+			|-- *.js
 ```
 
 When you are ready, run `./gulp javascripts` 
@@ -163,34 +163,34 @@ When you are ready, run `./gulp javascripts`
 CoffeeScripts are scaffolded the same way as javascripts:
 ```
 |-- static_dev
-		|-- coffescripts
-				|-- <app1>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.coffee
-				|-- <app2>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.coffee
-				...
-				|-- <appn>
-						|-- models
-						|-- collections
-						|-- views
-						|-- routers
-						|-- main.coffee
+	|-- coffescripts
+		|-- <app1>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
+		|-- <app2>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
+		...
+		|-- <appn>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
 ```
 
 or without backbone:
 ```
 |-- static_dev
-		|-- coffeescripts
-			|-- <app>
-					|-- *.coffee
+	|-- coffeescripts
+		|-- <app>
+			|-- *.coffee
 ```
 
 Run `./gulp coffee`
@@ -218,18 +218,19 @@ Place all sass (scss) stylesheets in static_dev/scss
 	{% endcompress %}
 ```
 
-### Error Handling with Rollbar
+### Error Handling with Rollbar ###
 
-####Overview
+#### Overview ####
 Rollbar is a plugin that reports on your application's exceptions and errors. Learn more via the links below:
 
-####Links
-	- Git: https://github.com/rollbar/pyrollbar
-	- Website: https://rollbar.com/docs/notifier/pyrollbar/
-	- Rollbar overview: https://rollbar.com/docs/
-	- Rollbar Error Tracking: https://rollbar.com/error-tracking/
+#### Links ####
 
-####Installation
+- Git: https://github.com/rollbar/pyrollbar
+- Website: https://rollbar.com/docs/notifier/pyrollbar/
+- Rollbar overview: https://rollbar.com/docs/
+- Rollbar Error Tracking: https://rollbar.com/error-tracking/
+
+#### Installation ####
 
 <pre><code>pip install rollbar</code></pre>
 
@@ -239,12 +240,14 @@ Add to the bottom of your middleware classes:
 
 Add this to your base.py file:
 
-<pre><code>ROLLBAR = {
-		'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
-		'environment': 'development' if DEBUG else 'production',
-		'branch': 'master',
-		'root': '/absolute/path/to/code/root',
-}</code></pre>
+<pre><code>
+ROLLBAR = {
+	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+	'environment': 'development' if DEBUG else 'production',
+	'branch': 'master',
+	'root': '/absolute/path/to/code/root',
+}
+</code></pre>
 
 ####Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
