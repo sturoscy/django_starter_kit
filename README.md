@@ -250,10 +250,10 @@ Add to the bottom of your middleware classes:
 Add this to your base.py file:
 
 <pre><code>ROLLBAR = {
-	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
-	'environment': 'development' if DEBUG else 'production',
-	'branch': 'master',
-	'root': '/absolute/path/to/code/root',
+    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': '/absolute/path/to/code/root',
 }</pre></code>
 
 #### Setting Up Your Rollbar Account
