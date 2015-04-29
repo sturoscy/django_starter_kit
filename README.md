@@ -97,56 +97,66 @@ Vendor files are managed through [bower](http://bower.io). Your vendor requireme
 
 After adding any additional requirements, run the following commands:
 
-	./bower install
-	./gulp bower
+<pre><code>
+./bower install
+./gulp bower	
+</code></pre>
 
 The bower install command installs vendor files to static_dev/bower_components. Running `./gulp bower` will concat and minimize all vendor files to static/javascripts/vendor.js and static/stylesheets/vendor.css
 
 - add vendor javascripts to any template using:
 
-	{% compress js %}
-		<script type="text/javascript" src="{% static "javascripts/vendor.js" %}"></script>
-	{% endcompress %}
+<code><pre>
+{% compress js %}
+	<script type="text/javascript" src="{% static "javascripts/vendor.js" %}"></script>
+{% endcompress %}
+</code></pre>
 
 - add vendor Stylesheets to any template using:
 
-	{% compress css %}
-		<link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8">
-	{% endcompress %}
+<code><pre>
+{% compress css %}
+	<link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+</code></pre>
 
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
 
 #### JavaScripts
 The Starter Kit comes with Backbone and Underscore installed via the bower.json file. Backbone apps are scaffolded as follows:
 
-	|-- static_dev
-		|-- javascripts
-			|-- <app1>
-				|-- models
-					|-- collections
-					|-- views
-					|-- routers
-					|-- main.js
-			|-- <app2>
-					|-- models
-					|-- collections
-					|-- views
-					|-- routers
-					|-- main.js
-			...
-			|-- <appn>
+<code><pre>
+|-- static_dev
+	|-- javascripts
+		|-- <app1>
+			|-- models
+				|-- collections
+				|-- views
+				|-- routers
+				|-- main.js
+		|-- <app2>
 				|-- models
 				|-- collections
 				|-- views
 				|-- routers
 				|-- main.js
+		...
+		|-- <appn>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.js
+</code></pre>
 
 If you don't want to use Backbone or Underscore in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
 
-	|-- static_dev
-		|-- javascripts
-			|-- <app>
-				|-- *.js
+<code><pre>
+|-- static_dev
+	|-- javascripts
+		|-- <app>
+			|-- *.js
+</code></pre>
 
 When you are ready, run `./gulp javascripts` 
 
@@ -154,41 +164,45 @@ When you are ready, run `./gulp javascripts`
 - after the task is run, an app.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
-	{% compress js %}
-		<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>
-	{% endcompress %}
+<code><pre>
+{% compress js %}
+	<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>
+{% endcompress %}
+</code></pre>
 
 #### CoffeeScripts
 CoffeeScripts are scaffolded the same way as javascripts:
 
-	|-- static_dev
-		|-- coffescripts
-			|-- <app1>
-				|-- models
-				|-- collections
-				|-- views
-				|-- routers
-				|-- main.coffee
-			|-- <app2>
-				|-- models
-				|-- collections
-				|-- views
-				|-- routers
-				|-- main.coffee
-			...
-			|-- <appn>
-				|-- models
-				|-- collections
-				|-- views
-				|-- routers
-				|-- main.coffee
+<code><pre>
+|-- static_dev
+	|-- coffescripts
+		|-- <app1>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
+		|-- <app2>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
+		...
+		|-- <appn>
+			|-- models
+			|-- collections
+			|-- views
+			|-- routers
+			|-- main.coffee
+</code></pre>
 
 or without backbone:
 
-	|-- static_dev
-		|-- coffeescripts
-			|-- <app>
-				|-- *.coffee
+<code><pre>|-- static_dev
+	|-- coffeescripts
+		|-- <app>
+			|-- *.coffee</code></pre>
 
 Run `./gulp coffee`
 
@@ -197,9 +211,9 @@ Run `./gulp coffee`
 - after the task is run, an app.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
-	{% compress js %}
-		<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>`
-	{% endcompress %}
+<code><pre>{% compress js %}
+	<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>`
+{% endcompress %}</code></pre>
 
 #### Stylesheets and SASS
 Place all sass (scss) stylesheets in static_dev/scss
@@ -209,9 +223,9 @@ Place all sass (scss) stylesheets in static_dev/scss
 - after the task is run, a custom.css file will be placed in the static/stylesheets directory
 - add the file to any template with:
 
-	{% compress css %}
-		<link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8">
-	{% endcompress %}
+<code><pre>{% compress css %}
+	<link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8">
+{% endcompress %}</code></pre>
 
 ### Error Handling with Rollbar
 
@@ -227,20 +241,20 @@ Rollbar is a plugin that reports on your application's exceptions and errors. Le
 
 #### Installation
 
-	pip install rollbar
+`pip install rollbar`
 
 Add to the bottom of your middleware classes:  
 
-	'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
+`'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'`
 
 Add this to your base.py file:
 
-	ROLLBAR = {
-		'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
-		'environment': 'development' if DEBUG else 'production',
-		'branch': 'master',
-		'root': '/absolute/path/to/code/root',
-	}
+<code><pre>ROLLBAR = {
+	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+	'environment': 'development' if DEBUG else 'production',
+	'branch': 'master',
+	'root': '/absolute/path/to/code/root',
+}</code></pre>
 
 #### Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
@@ -250,7 +264,7 @@ Add this to your base.py file:
 #### Custom Rollbar Handling
 You can also set Rollbar error reporting manually, by adding functions like this to your code:
 
-	rollbar.report_message('Got an IOError in the main loop', 'warning')
+`rollbar.report_message('Got an IOError in the main loop', 'warning')`
 
 See Rollbar documentation for more examples and helpful tips.
 
