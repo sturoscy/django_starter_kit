@@ -105,13 +105,13 @@ The bower install command installs vendor files to static_dev/bower_components. 
 - add vendor javascripts to any template using:
 
 <pre><code>{% compress js %}
-  &lt;script type="text/javascript" src="{% static "javascripts/vendor.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/vendor.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 - add vendor Stylesheets to any template using:
 
 <pre><code>{% compress css %}
-  &lt;link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8"&gt;
+    &lt;link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8"&gt;
 {% endcompress %}</code></pre>
 
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
@@ -155,7 +155,7 @@ When you are ready, run `./gulp javascripts`
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-  &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### CoffeeScripts
@@ -198,7 +198,7 @@ Run `./gulp coffee`
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-  &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### Stylesheets and SASS
@@ -210,7 +210,7 @@ Place all sass (scss) stylesheets in static_dev/scss
 - add the file to any template with:
 
 <pre><code>{% compress css %}
-  &lt;link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8"&gt;
+    &lt;link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8"&gt;
 {% endcompress %</code></pre>
 
 ### Error Handling with Rollbar
