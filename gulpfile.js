@@ -14,6 +14,7 @@ var reload      = browserSync.reload;
 // Paths
 var coffeescriptsPath   = 'static_dev/coffeescripts';
 var javascriptsPath     = 'static_dev/javascripts';
+var sassPath            = 'static_dev/sass';
 
 // Get Folder Function (from paths)
 function getFolders(dir) {
@@ -70,7 +71,7 @@ gulp.task('coffee', function() {
             'static_dev/coffeescripts/**/routers/*'
         ])
             .pipe($.coffee())
-            .pipe(gulp.dest('static_dev/javascripts'))
+            .pipe(gulp.dest('static_dev/javascripts'))-
             .pipe($.concat(folder + '.js'))
             .pipe($.jshint())
             .pipe($.uglify())
@@ -99,6 +100,7 @@ gulp.task('javascripts', function() {
             .pipe($.concat(folder + '.js'))
             .pipe($.jshint()) 
             .pipe($.uglify())
+            .pipe($.rename(folder + '.min.js'))
             .pipe(gulp.dest('static/javascripts'))
     });
 
@@ -117,21 +119,24 @@ gulp.task('eco', function() {
 // SASS Task
 // Compiles, concats, minifies, and versions scss files
 gulp.task('sass', function() {
-    return gulp.src([
-        'static_dev/sass/*.scss',
-        'static_dev/sass/**/*.scss'
-    ])
-        .pipe($.sass({
-            outputStyle: 'nested',
-            precision: 10,
-            includePaths: ['.'],
-            onError: console.error.bind(console, 'Sass error:')
-        }))
-        .pipe($.concat('custom.css'))
-        .pipe($.postcss([
-            require('autoprefixer-core')({ browsers: ['last 1 version'] })
-        ]))
-        .pipe(gulp.dest('static/stylesheets/'))
+    var folders = getFolders(sassPath);
+    var tasks   = folders.map(function(folder) {
+        return gulp.src([
+            'static_dev/sass/*.scss',
+            'static_dev/sass/**/*.scss'
+        ])
+            .pipe($.sass({
+                outputStyle: 'nested',
+                precision: 10,
+                includePaths: ['.'],
+                onError: console.error.bind(console, 'Sass error:')
+            }))
+            .pipe($.concat(folder + 'min.css'))
+            .pipe($.postcss([
+                require('autoprefixer-core')({ browsers: ['last 1 version'] })
+            ]))
+            .pipe(gulp.dest('static/stylesheets'))
+    });
 });
 
 // Images Task

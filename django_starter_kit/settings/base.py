@@ -94,7 +94,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 50
 }
 
-# Dev Databases
+# Databases
 
 DATABASES = {
     'default': {

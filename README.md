@@ -44,10 +44,11 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 
 ### Components & Standards
 - .gitignore file with editors, operating systems and Pythontemp files you want excluded.
-- example Apache configuration for the Django project (examples/apache-config.conf)
 - settings done in the preferred style: in a settings subdirectory, separated by environment: 
-    - project/settings/dev.py
     - project/settings/base.py
+    - project/settings/prod.py
+    - project/settings/dev.py
+    - project/settings/vagrant.py
 - wsgi.py set up for develop, stage and production environments.
 - requirements.txt file that includes the above plugins and Django version 1.7.7.
 - bower.json file included for managing third party javascript vendor files
