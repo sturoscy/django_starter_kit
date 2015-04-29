@@ -6,6 +6,7 @@
 - Components & Standards
 - Getting Started
 - Static File Management
+    - Overview
     - Getting Started with Static Files
     - Vendor Files
     - JavaScripts
@@ -20,11 +21,10 @@
     - Overview
 - Selenium and Unit Testing
     - Overview
-    - Etc. Etc..
 
 ### Introduction
-Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
-Built using Django v 1.7.7.
+Django Starter Kit (v 1.0) is a boilerplate for developing web applications. 
+**Built using Django v 1.7.7.**
 
 ### Included Plugins
 - [Django Base Theme](https://github.com/chadwhitman/Django-Base-Theme)
@@ -68,6 +68,8 @@ Built using Django v 1.7.7.
     - sudo service httpd restart
 
 ### Static File Management
+
+#### Overview
 The Django Starter Kit comes with two methods of client-side static file management - **collectstatic** and **gulp**. You will use **collectstatic** for any 3rd party plugins added via the requirements.txt file and subsequently placed in INSTALLED_APPS. For any internally developed apps, you will use **gulp** and the gulpfile.
 
 ### Getting Started with Static Files
@@ -243,22 +245,21 @@ Add this to your base.py file:
 }</code></pre>
 
 #### Setting Up Your Rollbar Account
-- Contact us and we will give you access to Wharton's Rollbar account.
-- From there, create your own project in the dashboard and set your token key in your 
-    settings dictionary configuration.
+- If you are part of CAOS or the Custom Applications team, contact us and we will give you access to Wharton's Rollbar account
+- If you are not a member of CAOS, you can create a free personal or team [rollbar account](https://rollbar.com/signup/) 
+- From there, create your own project in the dashboard and set your token key in your settings dictionary configuration.
 
 #### Custom Rollbar Handling
 You can also set Rollbar error reporting manually, by adding functions like this to your code:
 
-    rollbar.report_message('Got an IOError in the main loop', 'warning')
+    rollbar.report_message('Got an IOError in the main loop', 'warning', request)
 
-See Rollbar documentation for more examples and helpful tips.
+See [Rollbar documentation](https://rollbar.com/docs/notifier/pyrollbar/) for more examples and helpful tips.
 
 ### Django Base Theme
 
 #### Overview ####
-Django Base Theme is a responsive front-end boilerplate designed for Wharton apps that includes helpful plugins,
-components and standards. DBT's installation and use is already documented here: [https://github.com/wharton/django-base-theme](https://github.com/wharton/django-base-theme)
+Django Base Theme is a responsive front-end boilerplate designed for Wharton apps that includes helpful plugins, components and standards. DBT's installation and use is already documented here: [https://github.com/wharton/django-base-theme](https://github.com/wharton/django-base-theme)
     
 ### Selenium and Unit Testing
 
