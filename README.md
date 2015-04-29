@@ -6,21 +6,21 @@
 - Components & Standards
 - Getting Started
 - Static File Management
-	- Getting Started with Static Files
-	- Vendor Files
-	- JavaScripts
-	- CoffeeScripts
-	- Stylesheets and SASS
+    - Getting Started with Static Files
+    - Vendor Files
+    - JavaScripts
+    - CoffeeScripts
+    - Stylesheets and SASS
 - Error Handling with Rollbar
-	- Overview
-	- Installation
-	- Getting a Rollbar Account
-	- Custom Handling
+    - Overview
+    - Installation
+    - Getting a Rollbar Account
+    - Custom Handling
 - Django Base Theme
-	- Overview
+    - Overview
 - Selenium and Unit Testing
-	- Overview
-	- Etc. Etc..
+    - Overview
+    - Etc. Etc..
 
 ### Introduction
 Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
@@ -46,8 +46,8 @@ Built using Django v 1.7.7.
 - .gitignore file with editors, operating systems and Pythontemp files you want excluded.
 - example Apache configuration for the Django project (examples/apache-config.conf)
 - settings done in the preferred style: in a settings subdirectory, separated by environment: 
-	- project/settings/dev.py
-	- project/settings/base.py
+    - project/settings/dev.py
+    - project/settings/base.py
 - wsgi.py set up for develop, stage and production environments.
 - requirements.txt file that includes the above plugins and Django version 1.7.7.
 - bower.json file included for managing third party javascript vendor files
@@ -56,16 +56,16 @@ Built using Django v 1.7.7.
 
 ### Getting Started
 - Clone it:
-	- git clone ssh://git@stash.wharton.upenn.edu:7999/caos/django_starter_kit.git your_project_name
+    - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/django_starter_kit.git your_project_name
 - Rename the Django project: 
-	- find ./ -name "*.py" -exec sed -i 's/django_starter_kit/your_project_name/g' {} \;
-	- mv your_project_name/django_starter_kit your_project_name/your_project_name
-	- cp examples/apache-config.conf /etc/httpd/conf.d
+    - find ./ -name "*.py" -exec sed -i 's/django_starter_kit/your_project_name/g' {} \;
+    - mv your_project_name/django_starter_kit your_project_name/your_project_name
+    - cp examples/apache-config.conf /etc/httpd/conf.d
 - Modify the configuration to add your database credentials, if needed.
 - Execute the following commands to get everything up and running.
-	- ./manage.py migrate
-	- ./manage.py createsuperuser
-	- sudo service httpd restart
+    - ./manage.py migrate
+    - ./manage.py createsuperuser
+    - sudo service httpd restart
 
 ### Static File Management
 The Django Starter Kit comes with two methods of client-side static file management - **collectstatic** and **gulp**. You will use **collectstatic** for any 3rd party plugins added via the requirements.txt file and subsequently placed in INSTALLED_APPS. For any internally developed apps, you will use **gulp** and the gulpfile.
@@ -77,7 +77,7 @@ The node package manager (NPM) is used to manage node javascript packages that a
 
 - add any additional npm packages to the included default packages.json file
 - run `npm install`
-	- this will take some time depending on your system (5 - 10 minutes)
+    - this will take some time depending on your system (5 - 10 minutes)
 
 #### GulpJS
 The starter kit uses gulp to manage and automate client-side dependencies. For more info on gulp, please visit their website here - [GulpJS Docs](https://github.com/gulpjs/gulp/tree/master/docs). The available gulp commands are:
@@ -105,13 +105,13 @@ The bower install command installs vendor files to static_dev/bower_components. 
 - add vendor javascripts to any template using:
 
 <pre><code>{% compress js %}
-	&lt;script type="text/javascript" src="{% static "javascripts/vendor.js" %}"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="{% static "javascripts/vendor.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 - add vendor Stylesheets to any template using:
 
 <pre><code>{% compress css %}
-	&lt;link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8"&gt;
+  &lt;link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8"&gt;
 {% endcompress %}</code></pre>
 
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
@@ -120,33 +120,33 @@ The bower install command installs vendor files to static_dev/bower_components. 
 The Starter Kit comes with Backbone and Underscore installed via the bower.json file. Backbone apps are scaffolded as follows:
 
 <pre><code>|-- static_dev
-	|-- javascripts
-		|-- app1
-			|-- models
-				|-- collections
-				|-- views
-				|-- routers
-				|-- main.js
-		|-- app2
-				|-- models
-				|-- collections
-				|-- views
-				|-- routers
-				|-- main.js
-		...
-		|-- appn
-			|-- models
-			|-- collections
-			|-- views
-			|-- routers
-			|-- main.js</code></pre>
+    |-- javascripts
+        |-- app1
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.js
+        |-- app2
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.js
+        ...
+        |-- appn
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.js</code></pre>
 
 If you don't want to use Backbone or Underscore in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
 
 <pre><code>|-- static_dev
-	|-- javascripts
-		|-- app
-			|-- *.js</code></pre>
+    |-- javascripts
+        |-- app
+            |-- *.js</code></pre>
 
 When you are ready, run `./gulp javascripts` 
 
@@ -155,40 +155,40 @@ When you are ready, run `./gulp javascripts`
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-	&lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### CoffeeScripts
 CoffeeScripts are scaffolded the same way as javascripts:
 
 <pre><code>|-- static_dev
-	|-- coffescripts
-		|-- app1
-			|-- models
-			|-- collections
-			|-- views
-			|-- routers
-			|-- main.coffee
-		|-- app2
-			|-- models
-			|-- collections
-			|-- views
-			|-- routers
-			|-- main.coffee
-		...
-		|-- appn
-			|-- models
-			|-- collections
-			|-- views
-			|-- routers
-			|-- main.coffee</code></pre>
+    |-- coffescripts
+        |-- app1
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.coffee
+        |-- app2
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.coffee
+        ...
+        |-- appn
+            |-- models
+            |-- collections
+            |-- views
+            |-- routers
+            |-- main.coffee</code></pre>
 
 or without backbone:
 
 <pre><code>|-- static_dev
-	|-- coffeescripts
-		|-- app
-			|-- *.coffee</code></pre>
+    |-- coffeescripts
+        |-- app
+            |-- *.coffee</code></pre>
 
 Run `./gulp coffee`
 
@@ -198,7 +198,7 @@ Run `./gulp coffee`
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-	&lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### Stylesheets and SASS
@@ -210,7 +210,7 @@ Place all sass (scss) stylesheets in static_dev/scss
 - add the file to any template with:
 
 <pre><code>{% compress css %}
-	&lt;link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8"&gt;
+  &lt;link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8"&gt;
 {% endcompress %</code></pre>
 
 ### Error Handling with Rollbar
@@ -227,30 +227,30 @@ Rollbar is a plugin that reports on your application's exceptions and errors. Le
 
 #### Installation
 
-	pip install rollbar
+    pip install rollbar
 
 Add to the bottom of your middleware classes:  
 
-	'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
 
 Add this to your base.py file:
 
 <pre><code>ROLLBAR = {
-	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
-	'environment': 'development' if DEBUG else 'production',
-	'branch': 'master',
-	'root': '/absolute/path/to/code/root',
+    'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+    'environment': 'development' if DEBUG else 'production',
+    'branch': 'master',
+    'root': '/absolute/path/to/code/root',
 }</code></pre>
 
 #### Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
 - From there, create your own project in the dashboard and set your token key in your 
-	settings dictionary configuration.
+    settings dictionary configuration.
 
 #### Custom Rollbar Handling
 You can also set Rollbar error reporting manually, by adding functions like this to your code:
 
-	rollbar.report_message('Got an IOError in the main loop', 'warning')
+    rollbar.report_message('Got an IOError in the main loop', 'warning')
 
 See Rollbar documentation for more examples and helpful tips.
 
@@ -259,7 +259,7 @@ See Rollbar documentation for more examples and helpful tips.
 #### Overview ####
 Django Base Theme is a responsive front-end boilerplate designed for Wharton apps that includes helpful plugins,
 components and standards. DBT's installation and use is already documented here: [https://github.com/wharton/django-base-theme](https://github.com/wharton/django-base-theme)
-	
+    
 ### Selenium and Unit Testing
 
 #### Overview
