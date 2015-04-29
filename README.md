@@ -255,14 +255,14 @@ Add to the bottom of your middleware classes:
 
 Add this to your base.py file:
 
-<code><pre>
-ROLLBAR = {
-	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
-	'environment': 'development' if DEBUG else 'production',
-	'branch': 'master',
-	'root': '/absolute/path/to/code/root',
-}
-</code></pre>
+	<code><pre>
+	ROLLBAR = {
+		'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
+		'environment': 'development' if DEBUG else 'production',
+		'branch': 'master',
+		'root': '/absolute/path/to/code/root',
+	}
+	</code></pre>
 
 #### Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
