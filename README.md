@@ -100,32 +100,32 @@ After adding any additional requirements, run the following commands:
 <pre><code>
 ./bower install
 ./gulp bower	
-</code></pre>
+</pre></code>
 
 The bower install command installs vendor files to static_dev/bower_components. Running `./gulp bower` will concat and minimize all vendor files to static/javascripts/vendor.js and static/stylesheets/vendor.css
 
 - add vendor javascripts to any template using:
 
-<code><pre>
+<pre><code>
 {% compress js %}
 	<script type="text/javascript" src="{% static "javascripts/vendor.js" %}"></script>
 {% endcompress %}
-</code></pre>
+</pre></code>
 
 - add vendor Stylesheets to any template using:
 
-<code><pre>
+<pre><code>
 {% compress css %}
 	<link rel="stylesheet" href="{% static "stylesheets/vendor.css" %}" type="text/css" charset="utf-8">
 {% endcompress %}
-</code></pre>
+</pre></code>
 
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
 
 #### JavaScripts
 The Starter Kit comes with Backbone and Underscore installed via the bower.json file. Backbone apps are scaffolded as follows:
 
-<code><pre>
+<pre><code>
 |-- static_dev
 	|-- javascripts
 		|-- <app1>
@@ -147,16 +147,16 @@ The Starter Kit comes with Backbone and Underscore installed via the bower.json 
 			|-- views
 			|-- routers
 			|-- main.js
-</code></pre>
+</pre></code>
 
 If you don't want to use Backbone or Underscore in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
 
-<code><pre>
+<pre><code>
 |-- static_dev
 	|-- javascripts
 		|-- <app>
 			|-- *.js
-</code></pre>
+</pre></code>
 
 When you are ready, run `./gulp javascripts` 
 
@@ -164,16 +164,16 @@ When you are ready, run `./gulp javascripts`
 - after the task is run, an app.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
-<code><pre>
+<pre><code>
 {% compress js %}
 	<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>
 {% endcompress %}
-</code></pre>
+</pre></code>
 
 #### CoffeeScripts
 CoffeeScripts are scaffolded the same way as javascripts:
 
-<code><pre>
+<pre><code>
 |-- static_dev
 	|-- coffescripts
 		|-- <app1>
@@ -195,14 +195,14 @@ CoffeeScripts are scaffolded the same way as javascripts:
 			|-- views
 			|-- routers
 			|-- main.coffee
-</code></pre>
+</pre></code>
 
 or without backbone:
 
-<code><pre>|-- static_dev
+<pre><code>|-- static_dev
 	|-- coffeescripts
 		|-- <app>
-			|-- *.coffee</code></pre>
+			|-- *.coffee</pre></code>
 
 Run `./gulp coffee`
 
@@ -211,9 +211,9 @@ Run `./gulp coffee`
 - after the task is run, an app.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
-<code><pre>{% compress js %}
+<pre><code>{% compress js %}
 	<script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>`
-{% endcompress %}</code></pre>
+{% endcompress %}</pre></code>
 
 #### Stylesheets and SASS
 Place all sass (scss) stylesheets in static_dev/scss
@@ -223,9 +223,9 @@ Place all sass (scss) stylesheets in static_dev/scss
 - after the task is run, a custom.css file will be placed in the static/stylesheets directory
 - add the file to any template with:
 
-<code><pre>{% compress css %}
+<pre><code>{% compress css %}
 	<link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8">
-{% endcompress %}</code></pre>
+{% endcompress %}</pre></code>
 
 ### Error Handling with Rollbar
 
@@ -249,12 +249,12 @@ Add to the bottom of your middleware classes:
 
 Add this to your base.py file:
 
-<code><pre>ROLLBAR = {
+<pre><code>ROLLBAR = {
 	'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
 	'environment': 'development' if DEBUG else 'production',
 	'branch': 'master',
 	'root': '/absolute/path/to/code/root',
-}</code></pre>
+}</pre></code>
 
 #### Setting Up Your Rollbar Account
 - Contact us and we will give you access to Wharton's Rollbar account.
