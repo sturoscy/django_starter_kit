@@ -21,6 +21,7 @@
     - Overview
 - Selenium and Unit Testing
     - Overview
+- Contributors
 
 ### Introduction
 Django Starter Kit (v 1.0) is a boilerplate for developing web applications. 
@@ -265,3 +266,10 @@ Django Base Theme is a responsive front-end boilerplate designed for Wharton app
 ### Selenium and Unit Testing
 
 #### Overview
+
+### Contributors
+#####(in alphabetical order)
+- Tim Allen
+- Mikhail Oza
+- Steve Turoscy
+- Chad Whitman
