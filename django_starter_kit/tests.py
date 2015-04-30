@@ -8,7 +8,6 @@ from django_starter_kit.views import BaseView
 
 class StarterKitTests(TestCase):
 
-
     def test_root_url_resolves_to_200(self):
         response = self.client.get('', follow=True)
         self.assertEqual(response.status_code, 200)
@@ -16,3 +15,19 @@ class StarterKitTests(TestCase):
     def test_mock_page(self):
         response = self.client.get('/mock', follow=True)
         self.assertEqual(response.status_code, 200)
+
+    def test_mock_page_output_message(self):
+        response = self.client.get('/mock', follow=True)
+
+        self.assertIn('Output: But did your test pass?',
+                      response.content.decode())
+
+# This test is incomplete and the rest of the application does
+# not have anything to help you with this. Try to figure it out!
+    def test_mock_page_redirects_after_POST(self):
+        request = HttpRequest()
+        request.method = 'POST'
+
+        response = self.client.get('/mock', follow=True)
+
+        self.assertEqual(response.status_code, 302)
