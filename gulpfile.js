@@ -57,7 +57,7 @@ gulp.task('bower', function() {
 });
 
 // Coffeescript task
-// If coding in coffee, this will compile, concat, and uglify
+// If coding in coffee, this will compile, concat, jshint, and uglify
 // Also moves compiled scripts to the javascript directory for reference
 gulp.task('coffee', function() {
     var folders = getFolders(coffeescriptsPath);

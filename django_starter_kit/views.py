@@ -1,11 +1,9 @@
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.http import HttpResponse
-
 
 import os
-
 
 # BaseView
 class BaseView(TemplateView):
@@ -18,8 +16,8 @@ class BaseView(TemplateView):
 
 
 # MockView
-class MockView():
+class TestView(object):
 
-    def mock(request):
+    def test(request):
         message = 'But did your test pass?'
-        return render(request, 'MockView/mock_view_page.html', {'message': message})
+        return render(request, 'test_view/test_view_page.html', { 'message': message })
