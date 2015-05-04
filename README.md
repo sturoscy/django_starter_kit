@@ -266,6 +266,14 @@ Django Base Theme is a responsive front-end boilerplate designed for Wharton app
 ### Selenium and Unit Testing
 
 #### Overview
+Once you have the starter kit installed, run `./manage.py runserver 0.0.0.0:8000` to start a python server and go to localhost:8001/test. That page has more information regarding UnitTesting in the starter kit. Also, a few basic unit testing examples can be found in the following directories and files:
+
+<pre><code>|-- django_starter_kit
+    |-- tests.py
+    |-- views.py
+|-- templates
+    |-- test_view
+        |-- test_view_page.html</code></pre>
 
 ### Contributors
 #####(in alphabetical order)

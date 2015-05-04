@@ -1,0 +1,257 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sas",
+				"sassPath"
+			],
+			[
+				"get",
+				"getFolders"
+			],
+			[
+				"javas",
+				"javascripts"
+			],
+			[
+				"coffe",
+				"coffeescriptsPath"
+			],
+			[
+				"sta",
+				"static_dev"
+			],
+			[
+				"js",
+				"jshint"
+			],
+			[
+				"cof",
+				"coffeeScriptsPath"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "ma",
+		"selected_items":
+		[
+			[
+				"ma",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"soda",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"install package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/django_starter_kit.sublime-workspace",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/settings/base.py",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/settings/vagrant.py",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/settings/dev.py",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/settings/prod.py",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/gulpfile.js",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/README.md",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/templates/starter_kit_base.html",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/static_dev/coffeescripts/test/main.coffee",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/static_dev/coffeescripts/test/models/test.coffee",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/static_dev/javascripts/placeholder",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/package.json",
+		"/Users/sturoscy/Projects/python/python-dev/html/instruction_django_backbone/static_dev/coffeescripts/seating_attendance.js",
+		"/Users/sturoscy/Projects/python/python-dev/html/instruction_django_backbone/static/javascripts/app.js",
+		"/Users/sturoscy/Projects/python/python-dev/html/instruction_django_backbone/static/javascripts/seat.coffee",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/wsgi.py",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/manage.py",
+		"/Users/sturoscy/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/sturoscy/Library/Application Support/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/sturoscy/Desktop/check.html",
+		"/Users/sturoscy/Projects/python/python-dev-node/html/django_starter_kit/django_starter_kit/urls.py",
+		"/Users/sturoscy/Desktop/arc-response-2014 Feb 18 12-48-18.json"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"scss",
+			"rename",
+			"</pre></code>",
+			"</code></pre>",
+			"<code><pre>",
+			"```",
+			"JavaScript",
+			"javascript",
+			"bower.json",
+			"gulp",
+			"command",
+			"enable_highlight",
+			"2014-02",
+			"meng",
+			"2014-02-13"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"</code></pre>",
+			"</pre></code>",
+			"<pre><code>"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "django_starter_kit.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 240.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
