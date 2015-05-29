@@ -57,16 +57,28 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 - node package manager (packages.json) file included for gulp dependencies
 
 ### Getting Started
-- Clone it:
+- First, clone the slightly modified Wharton vagrant box:
+    - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/python-dev-node.git
+    - cd python-dev-node
+    - vagrant up (go get coffee, this will take awhile)
+    - vagrant ssh
+- From ssh session, clone the django_starter_kit into /vagrant/html/:
     - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/django_starter_kit.git your_project_name
+- Install NPM requirements:
+    - cd /vagrant/html/your_project_name
+    - npm install (go get another cup of coffee)
+- Create symlinks to gulp and bower
+    - ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp
+    - ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower
 - Rename the Django project: 
     - find ./ -name "*.py" -exec sed -i 's/django_starter_kit/your_project_name/g' {} \;
     - mv your_project_name/django_starter_kit your_project_name/your_project_name
-    - cp examples/apache-config.conf /etc/httpd/conf.d
-- Modify the configuration to add your database credentials, if needed.
+    - cp examples/apache-config.conf /etc/httpd/conf.d    
+- Check the /vagrant/html/your_project_name/settings folder
+    - this folder contains various django settings that relate to different environments
 - Execute the following commands to get everything up and running.
     - ./manage.py migrate
-    - ./manage.py createsuperuser
+    - ./manage.py collectstatic
     - sudo service httpd restart
 
 ### Static File Management
