@@ -71,7 +71,7 @@ gulp.task('coffee', function() {
             'static_dev/coffeescripts/**/routers/*'
         ])
             .pipe($.coffee())
-            .pipe(gulp.dest('static_dev/javascripts'))-
+            .pipe(gulp.dest('static_dev/javascripts'))
             .pipe($.concat(folder + '.js'))
             .pipe($.jshint())
             .pipe($.uglify())

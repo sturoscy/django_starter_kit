@@ -46,10 +46,10 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 ### Components & Standards
 - .gitignore file with editors, operating systems and Pythontemp files you want excluded.
 - settings done in the preferred style: in a settings subdirectory, separated by environment: 
-    - project/settings/base.py
-    - project/settings/prod.py
-    - project/settings/dev.py
-    - project/settings/vagrant.py
+	- project/settings/base.py
+	- project/settings/prod.py
+	- project/settings/dev.py
+	- project/settings/vagrant.py
 - wsgi.py set up for develop, stage and production environments.
 - requirements.txt file that includes the above plugins and Django version 1.7.7.
 - bower.json file included for managing third party javascript vendor files
@@ -57,16 +57,21 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 - node package manager (packages.json) file included for gulp dependencies
 
 ### Getting Started
-- First, clone the slightly modified Wharton vagrant box:
+- Clone vagrant box
     - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/python-dev-node.git
     - cd python-dev-node
     - vagrant up (go get coffee, this will take awhile)
     - vagrant ssh
+- From ssh session, create a virtualenv
+    - mkvirtualenv your_project_name
+    - workon your_project_name
+- From ssh session, update your apache-config.conf file
+    - make sure you replace the name of your virtualenv and the name of your project where applicable
 - From ssh session, clone the django_starter_kit into /vagrant/html/:
     - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/django_starter_kit.git your_project_name
 - Install NPM requirements:
     - cd /vagrant/html/your_project_name
-    - npm install (go get another cup of coffee)
+    - npm install (and go get another cup of coffee)
 - Create symlinks to gulp and bower
     - ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp
     - ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower
@@ -76,6 +81,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
     - cp examples/apache-config.conf /etc/httpd/conf.d    
 - Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
+    - also don't forget to 'pip install -r requirements.txt' in your project directory
 - Execute the following commands to get everything up and running.
     - ./manage.py migrate
     - ./manage.py collectstatic
