@@ -281,7 +281,7 @@ See [Rollbar documentation](https://rollbar.com/docs/notifier/pyrollbar/) for mo
 ### Django Base Theme
 
 #### Overview ####
-Django Base Theme is a responsive front-end boilerplate designed for Wharton apps that includes helpful plugins, components and standards. DBT's installation and use is already documented here: [https://github.com/wharton/django-base-theme](https://github.com/wharton/django-base-theme)
+Django Base Theme is a responsive front-end boilerplate designed for Wharton Django/Python apps that includes helpful plugins, components and standards. Installation and use is already documented here: [https://github.com/wharton/django-base-theme](https://github.com/wharton/django-base-theme)
     
 ### Selenium and Unit Testing
 
