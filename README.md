@@ -66,6 +66,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
     - mkvirtualenv your_project_name
     - workon your_project_name
 - From ssh session, update your apache-config.conf file
+    - sudo vim /etc/httpd/conf.d/apache-config.conf
     - make sure you replace the name of your virtualenv and the name of your project where applicable
 - From ssh session, clone the django_starter_kit into /vagrant/html/:
     - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/django_starter_kit.git your_project_name
@@ -81,7 +82,8 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
     - cp examples/apache-config.conf /etc/httpd/conf.d    
 - Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
-    - also don't forget to 'pip install -r requirements.txt' in your project directory
+    - don't forget to 'pip install -r requirements.txt' in your project directory
+    - Run './bower install' to install bower_components in your static_dev directory
 - Execute the following commands to get everything up and running.
     - ./manage.py migrate
     - ./manage.py collectstatic
