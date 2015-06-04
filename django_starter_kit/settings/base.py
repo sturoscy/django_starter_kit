@@ -117,7 +117,7 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 ROLLBAR = {
-    'access_token': '18d9720e59f84ed98a8be9977ba22526',
+    'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
     'environment': 'production',
     'branch': 'master',
     'root': '/var/www/html/wisp',
