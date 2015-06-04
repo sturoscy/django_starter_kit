@@ -1,7 +1,8 @@
 'use strict';
 
 // Load required files
-var fs              = require('fs'),
+var argv            = require('yargs').argv,
+    fs              = require('fs'),
     gulp            = require('gulp'),
     mainBowerFiles  = require('main-bower-files'),
     merge           = require('merge-stream'),
@@ -15,19 +16,23 @@ var reload      = browserSync.reload;
 var coffeescriptsPath   = 'static_dev/coffeescripts';
 var javascriptsPath     = 'static_dev/javascripts';
 var sassPath            = 'static_dev/sass';
+var templatesPath       = 'static_dev/javascripts';
 
 // Get Folder Function (from paths)
 function getFolders(dir) {
     return fs.readdirSync(dir)
-      .filter(function(file) {
-        return fs.statSync(path.join(dir, file)).isDirectory();
-      });
+        .filter(function(file) {
+            return fs.statSync(path.join(dir, file)).isDirectory();
+        });
 }
 
 // Main serve task
 // Watches coffee, js, and scss files for changes
-gulp.task('serve', function() {
-    browserSync({ proxy: 'http://localhost:8001' });
+gulp.task('serve', ['apache', 'collectstatic'], function() {
+    browserSync({ 
+        https: true,
+        proxy: 'https://vagrant.wharton.upenn.edu'
+    });
 
     gulp.watch([
         'static_dev/coffeescripts/**/*.coffee',
@@ -35,11 +40,33 @@ gulp.task('serve', function() {
         'static_dev/coffeescripts/**/collections/*', 
         'static_dev/coffeescripts/**/views/*',
         'static_dev/coffeescripts/**/routers/*',
-    ], ['coffee']);
-    gulp.watch('static_dev/coffeescripts/**/templates/*.eco', ['eco']);
-    gulp.watch('static_dev/sass/**/*.scss', ['sass']);
+    ], ['coffee', 'apache']);
+    gulp.watch('static_dev/coffeescripts/**/templates/*.eco', ['eco', 'apache']);
+    gulp.watch('static_dev/sass/**/*.scss', ['sass', 'apache']);
     gulp.watch(['static/javascripts/*.js', 'static/stylesheets/*.css']).on('change', reload);
 });
+
+// Shell tasks
+// Quick ways of running python and client related tasks
+gulp.task('apache', $.shell.task(['sudo service httpd restart']))
+gulp.task('backbonescaffold', $.shell.task([
+    'mkdir static_dev/' + argv.appname + '/models/',
+    'mkdir static_dev/' + argv.appname + '/collections/',
+    'mkdir static_dev/' + argv.appname + '/views/',
+    'mkdir static_dev/' + argv.appname + '/routers/',
+    'mkdir static_dev/' + argv.appname + '/templates/',
+]))
+gulp.task('collectstatic', $.shell.task([
+    'echo "yes" | ./manage.py collectstatic',
+    'sudo service httpd restart',
+]))
+gulp.task('startapp', $.shell.task([
+    'django-admin.py startapp ' + argv.appname,
+    'mkdir static_dev/coffeescripts/' + argv.appname,
+    'mkdir static_dev/javascripts/' + argv.appname,
+    'mkdir static_dev/sass/' + argv.appname,
+    'mkdir templates/' + argv.appname,
+]))
 
 // Main bower task
 // Uglify's all bower/vendor scripts into single file
@@ -86,7 +113,7 @@ gulp.task('coffee', function() {
 
 // Javascript task
 // If coding in Javascript, this will concat, jshint, and uglify
-gulp.task('javascripts', function() {
+gulp.task('javascript', function() {
     var folders = getFolders(javascriptsPath);
     var tasks   = folders.map(function(folder) {
         return gulp.src(
@@ -108,12 +135,19 @@ gulp.task('javascripts', function() {
 });
 
 // ECO Template Task
-// Compiles and concats JST files used in Backbone
+// Compiles and concats html.eco files used in Backbone
 gulp.task('eco', function() {
-    return gulp.src('static_dev/coffeescripts/**/templates/*.eco')
-        .pipe($.eco())
-        .pipe($.concat('templates.js'))
-        .pipe(gulp.dest('static/javascripts'))
+    var folders = getFolders(templatesPath);
+    var tasks   = folders.map(function(folder) {
+        return gulp.src('static_dev/coffeescripts/**/templates/*.eco')
+            .pipe($.eco())
+            .pipe($.concat(folder + '.templates.js'))
+            .pipe($.uglify())
+            .pipe($.rename(folder + '.templates.min.js'))
+            .pipe(gulp.dest('static/javascripts'))
+    });
+
+    return merge(tasks);
 });
 
 // SASS Task
@@ -137,12 +171,18 @@ gulp.task('sass', function() {
             ]))
             .pipe(gulp.dest('static/stylesheets'))
     });
+
+    return merge(tasks);
 });
 
 // Images Task
 // Optimizes images
 gulp.task('images', function() {
-    return gulp.src(['static_dev/img/**/*'])
+    return gulp.src([
+        'static_dev/img/*', 
+        'static_dev/img/**/*', 
+        'static/img/*', 'static/img/**/*'
+    ])
         .pipe($.cache($.imagemin({
             progressive: true,
             interlaced: true,
@@ -153,4 +193,4 @@ gulp.task('images', function() {
 
 // Define the tasks
 gulp.task('default', ['serve']);
-gulp.task('build', ['bower', 'coffee', 'javascripts', 'eco', 'images', 'sass']);
+gulp.task('build', ['bower', 'coffee', 'javascript', 'eco', 'images', 'sass', 'collectstatic']);

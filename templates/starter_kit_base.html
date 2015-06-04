@@ -7,7 +7,10 @@
 
 {% block extra_head_top %}
   {% compress css %}
-    <link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8">
+    <!-- Project Files -->
+    <!-- Examples (would be generated from gulp sass command)
+      <link rel="stylesheet" href='{% static 'stylesheets/[app_name].min.css' %}' type="text/css" charset="utf-8">
+    -->
   {% endcompress %}
 {% endblock extra_head_top %}
 
@@ -17,8 +20,11 @@
   {% compress js %}
     <!-- Vendor Files --> 
     <script type="text/javascript" src='{% static 'javascripts/vendor.js' %}'></script>
+
     <!-- Project Files -->
-    <script type="text/javascript" src='{% static 'javascripts/templates.js' %}'></script>
-    <script type="text/javascript" src='{% static 'javascripts/app.js' %}'></script>
+    <!-- Examples (would be generated from gulp eco, coffee, and javascript commands)
+      <script type="text/javascript" src='{% static 'javascripts/[app_name].templates.min.js' %}'></script>
+      <script type="text/javascript" src='{% static 'javascripts/[app_name].min.js' %}'></script>
+    -->
   {% endcompress %}
 {% endblock extra_footer_js %}

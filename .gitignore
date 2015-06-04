@@ -1,3 +1,6 @@
+# Sublime Text
+*.sublime-workspace
+
 # Python bytecode:
 *.py[co]
 

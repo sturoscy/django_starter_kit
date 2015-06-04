@@ -3,7 +3,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 
-
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
@@ -11,7 +10,6 @@ class NewVisitorTest(LiveServerTestCase):
 
     def tearDown(self):
         self.browser.quit()
-
 
     def finish_the_test(self, row_text):
         self.fail('Finish the test!')
