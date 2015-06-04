@@ -16,7 +16,7 @@ INSTALLED_APPS += (
 MIDDLEWARE_CLASSES = ('debug_toolbar.middleware.DebugToolbarMiddleware',) + MIDDLEWARE_CLASSES
 
 DEBUG_TOOLBAR_CONFIG = {
-    'SHOW_TOOLBAR_CALLBACK': 'django_starter_kit.settings.dev.custom_show_toolbar',
+    'SHOW_TOOLBAR_CALLBACK': 'shoutouts.settings.dev.custom_show_toolbar',
 }
 
 INTERNAL_IPS = ('127.0.0.1', '128.91.*.*',)
@@ -27,3 +27,6 @@ ROLLBAR = {
     'branch': 'develop',
     'root': '/var/www/html/<app>',
 }
+
+# If overriding Django's default logging:
+# from .logging import *

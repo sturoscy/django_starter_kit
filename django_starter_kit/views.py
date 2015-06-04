@@ -14,7 +14,6 @@ class BaseView(TemplateView):
         context['rollbar_access_token'] = settings.ROLLBAR.get('access_token')
         return context
 
-
 # MockView
 class TestView(object):
 

@@ -9,6 +9,7 @@ django-pyodbc-azure==1.2.1
 djangorestframework==3.1
 markdown==2.6.1
 pytz==2014.7
+requests==2.7.0
 rollbar==0.9.9
 sqlparse==0.1.13
 git+https://github.com/wharton/django-base-theme
