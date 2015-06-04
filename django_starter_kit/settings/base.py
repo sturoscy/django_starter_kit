@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'base_theme',
     'rest_framework',
     'rollbar',
+    'penn',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +54,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 AUTHENTICATION_BACKENDS = (
+    'penn.remote_user.PennRemoteUserBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -123,5 +125,4 @@ ROLLBAR = {
     'root': '/var/www/html/wisp',
 }
 
-# If overriding Django's default logging:
-# from .logging import *
+WISP_TOKEN = 'YOUR_WISP_TOKEN'

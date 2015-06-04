@@ -27,3 +27,6 @@ ROLLBAR = {
     'branch': 'develop',
     'root': '/var/www/html/<app>',
 }
+
+# If overriding Django's default logging:
+# from .logging import *
