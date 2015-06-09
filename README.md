@@ -72,7 +72,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
         - workon your_project_name
     - clone the django_starter_kit into /vagrant/html/
         - `cd /vagrant/html/`
-        - `pip install django==1.7.8`
+        - `pip install django==1.8`
         - `django-admin startproject --template=https://github.com/sturoscy/django_starter_kit/archive/master.zip your_project_name`
     - update your apache-config.conf file
         - sudo vim /etc/httpd/conf.d/apache-config.conf
