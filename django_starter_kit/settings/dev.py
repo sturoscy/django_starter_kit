@@ -21,12 +21,5 @@ DEBUG_TOOLBAR_CONFIG = {
 
 INTERNAL_IPS = ('127.0.0.1', '128.91.*.*',)
 
-ROLLBAR = {
-    'access_token': 'YOUR_POST_SERVER_ITEM_ACCESS_TOKEN',
-    'environment': 'development',
-    'branch': 'develop',
-    'root': '/var/www/html/<app>',
-}
-
 # If overriding Django's default logging:
 # from .logging import *
