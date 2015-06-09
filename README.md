@@ -25,7 +25,7 @@
 
 ### Introduction
 Django Starter Kit (v 1.0) is a boilerplate for developing web applications. 
-**Built using Django v 1.8**
+**Built using Django v 1.7.8**
 
 ### Included Plugins
 - [Django Base Theme](https://github.com/chadwhitman/Django-Base-Theme)
@@ -51,7 +51,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 	- project/settings/dev.py
 	- project/settings/vagrant.py
 - wsgi.py set up for develop, stage and production environments.
-- requirements.txt file that includes the above plugins and Django version 1.8
+- requirements.txt file that includes the above plugins and Django version 1.7.8
 - bower.json file included for managing third party javascript vendor files
 - gulpfile.js included for static files automation (javascripts, coffeescripts, sass, eco templates, etc.)
 - node package manager (packages.json) file included for gulp dependencies
@@ -72,23 +72,23 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
         - workon your_project_name
     - clone the django_starter_kit into /vagrant/html/
         - `cd /vagrant/html/`
-        - `pip install django==1.8`
+        - `pip install django==1.7.8`
         - `django-admin startproject --template=https://github.com/sturoscy/django_starter_kit/archive/master.zip your_project_name`
     - update your apache-config.conf file
         - sudo vim /etc/httpd/conf.d/apache-config.conf
         - make sure you replace the name of your virtualenv and the name of your project where applicable
-- Install NPM requirements:
-    - cd /vagrant/html/your_project_name
-    - `npm install` (and go get another cup of coffee)
+- Copy NPM requirements:
+    - cp -r /vagrant/dependencies/node_modules /vagrant/html/your_project_name
+    - `npm install --cache`
 - Create symlinks to gulp and bower
     - ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp
     - ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower
 - Rename references to django_starter_kit in the Django project: 
-    - find -name "*.py" -exec sed -r -i'' -e 's/django_starter_kit/your_project_name/g' {} \;
+    - `find -name "*.py" -exec sed -r -i'' -e 's/django_starter_kit/your_project_name/g' {} \;`
     - mv your_project_name/django_starter_kit your_project_name/your_project_name  
 - Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
-    - don't forget to 'pip install -r requirements.txt' in your project directory
+    - don't forget to `pip install -r requirements.txt` in your project directory
     - Run './bower install' to install bower_components in your static_dev directory
 - Execute the following commands to get everything up and running.
     - ./manage.py migrate
@@ -106,8 +106,7 @@ The Django Starter Kit comes with two methods of client-side static file managem
 The node package manager (NPM) is used to manage node javascript packages that are used in the gulp file (see below). 
 
 - add any additional npm packages to the included default packages.json file
-- run `npm install`
-    - this will take some time depending on your system (5 - 10 minutes)
+- run `npm install --cache`
 
 #### GulpJS
 The starter kit uses gulp to manage and automate client-side dependencies. For more info on gulp, please visit their website here - [GulpJS Docs](https://github.com/gulpjs/gulp/tree/master/docs). The available gulp commands are:
