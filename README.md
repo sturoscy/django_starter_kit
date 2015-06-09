@@ -25,7 +25,7 @@
 
 ### Introduction
 Django Starter Kit (v 1.0) is a boilerplate for developing web applications. 
-**Built using Django v 1.7.7.**
+**Built using Django v 1.8**
 
 ### Included Plugins
 - [Django Base Theme](https://github.com/chadwhitman/Django-Base-Theme)
@@ -51,7 +51,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 	- project/settings/dev.py
 	- project/settings/vagrant.py
 - wsgi.py set up for develop, stage and production environments.
-- requirements.txt file that includes the above plugins and Django version 1.7.7.
+- requirements.txt file that includes the above plugins and Django version 1.8
 - bower.json file included for managing third party javascript vendor files
 - gulpfile.js included for static files automation (javascripts, coffeescripts, sass, eco templates, etc.)
 - node package manager (packages.json) file included for gulp dependencies
