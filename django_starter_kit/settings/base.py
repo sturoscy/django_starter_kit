@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'bootstrap3',
     'base_theme',
     'rest_framework',
-    'rollbar',
     'penn',
 )
 
@@ -50,7 +49,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (

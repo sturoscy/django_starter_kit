@@ -74,6 +74,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
         - `cd /vagrant/html/`
         - `pip install django==1.7.8`
         - `django-admin startproject --template=https://github.com/sturoscy/django_starter_kit/archive/master.zip your_project_name`
+        - `cd your_project_name`
     - update your apache-config.conf file
         - `sudo vim /etc/httpd/conf.d/apache-config.conf`
         - make sure you replace the name of your virtualenv and the name of your project where applicable
@@ -88,11 +89,12 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
     - mv your_project_name/django_starter_kit your_project_name/your_project_name  
 - Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
-    - don't forget to `pip install -r requirements.txt` in your project directory
-    - Run `./bower install` to install bower_components in your static_dev directory
 - Execute the following commands to get everything up and running.
+    - `pip install -r requirements.txt`
     - `./manage.py migrate`
     - `./manage.py collectstatic`
+    - `./bower install` to install bower_components in your static_dev directory
+    - `./gulp bower`
     - `sudo service httpd restart`
 
 ### Static File Management
