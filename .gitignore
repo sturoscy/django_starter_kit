@@ -63,7 +63,6 @@ htmlcov/
 
 # Node
 node_modules/
-node-v0.12.0/
 npm-debug.log
 
 # sqlite3

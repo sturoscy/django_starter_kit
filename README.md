@@ -58,42 +58,42 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
 
 ### Getting Started
 - Clone vagrant box
-    - git clone ssh://git@stash.wharton.upenn.edu:7999/caos/python-dev-node.git
-    - cd python-dev-node
-    - vagrant up (go get coffee, this will take awhile)
-    - vagrant ssh
+    - `git clone ssh://git@stash.wharton.upenn.edu:7999/caos/python-dev-node.git`
+    - `cd python-dev-node`
+    - `vagrant up` (go get coffee, this will take awhile)
+    - `vagrant ssh`
     - check the python-dev-node documentation at https://stash.wharton.upenn.edu/projects/CAOS/repos/python-dev-node/browse
         - follow steps 1 - 3 here - https://help.github.com/articles/generating-ssh-keys/ - to generate ssh keys
         - run `cat < ~/.ssh/id_rsa.pub` after generating your keys and copy the output
         - paste ssh keys to your stash account here - https://stash.wharton.upenn.edu/plugins/servlet/ssh/account/keys
 - From ssh session
     - create virtualenv
-        - mkvirtualenv your_project_name
-        - workon your_project_name
+        - `mkvirtualenv your_project_name`
+        - `workon your_project_name`
     - clone the django_starter_kit into /vagrant/html/
         - `cd /vagrant/html/`
         - `pip install django==1.7.8`
         - `django-admin startproject --template=https://github.com/sturoscy/django_starter_kit/archive/master.zip your_project_name`
     - update your apache-config.conf file
-        - sudo vim /etc/httpd/conf.d/apache-config.conf
+        - `sudo vim /etc/httpd/conf.d/apache-config.conf`
         - make sure you replace the name of your virtualenv and the name of your project where applicable
 - Copy NPM requirements:
-    - cp -r /vagrant/dependencies/node_modules /vagrant/html/your_project_name
+    - `cp -r /vagrant/dependencies/node_modules /vagrant/html/your_project_name`
     - `npm install --cache`
 - Create symlinks to gulp and bower
-    - ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp
-    - ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower
+    - `ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp`
+    - `ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower`
 - Rename references to django_starter_kit in the Django project: 
     - `find -name "*.py" -exec sed -r -i'' -e 's/django_starter_kit/your_project_name/g' {} \;`
     - mv your_project_name/django_starter_kit your_project_name/your_project_name  
 - Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
     - don't forget to `pip install -r requirements.txt` in your project directory
-    - Run './bower install' to install bower_components in your static_dev directory
+    - Run `./bower install` to install bower_components in your static_dev directory
 - Execute the following commands to get everything up and running.
-    - ./manage.py migrate
-    - ./manage.py collectstatic
-    - sudo service httpd restart
+    - `./manage.py migrate`
+    - `./manage.py collectstatic`
+    - `sudo service httpd restart`
 
 ### Static File Management
 
@@ -301,7 +301,7 @@ Once you have the starter kit installed, run `./manage.py runserver 0.0.0.0:8000
         |-- test_view_page.html</code></pre>
 
 ### Contributors
-#####(in alphabetical order)
+##### (in alphabetical order)
 - Tim Allen
 - Mikhail Oza
 - Steve Turoscy
