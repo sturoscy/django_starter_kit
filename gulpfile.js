@@ -8,7 +8,8 @@ var argv          = require('yargs').argv,
   mainBowerFiles  = require('main-bower-files'),
   merge           = require('merge-stream'),
   minifyCss       = require('gulp-minify-css'),
-  path            = require('path');
+  path            = require('path'),
+  taskListing     = require('gulp-task-listing');
 
 // This will load any gulp plugins automatically that
 // have this format ('gulp-pluginName' [can only have one dash])
@@ -18,6 +19,10 @@ var $ = require('gulp-load-plugins')();
 // Browser Sync
 var browserSync = require('browser-sync'),
     reload      = browserSync.reload;
+ 
+// Add a task to render the output
+// Used for $-> gulp help
+gulp.task('help', taskListing);
 
 // Paths
 var bowerPath           = 'static_dev/bower_components',
@@ -37,11 +42,12 @@ function getFolders(dir) {
 }
 
 // Main serve task
-// Watches coffee, js, and scss files for changes
-gulp.task('serve', ['javascript'], function() {
+// Watches coffee, js, and scss files for changes. Will restart
+// apache and reload browser automatically
+gulp.task('serve', ['build'], function() {
   browserSync({
-    proxy: 'localhost:5000',
-    port: '8000'
+    https: true,
+    proxy: 'https://vagrant.wharton.upenn.edu/'
   });
   gulp.watch([
     'static_dev/coffeescripts/**/*.coffee',
@@ -49,35 +55,36 @@ gulp.task('serve', ['javascript'], function() {
     'static_dev/coffeescripts/**/collections/*', 
     'static_dev/coffeescripts/**/views/*',
     'static_dev/coffeescripts/**/routers/*',
-  ], ['coffee']);
+  ], ['scripts-coffee', 'shell-apache']);
   gulp.watch([
     'static_dev/javascripts/**/*.js',
     'static_dev/javascripts/**/models/*', 
     'static_dev/javascripts/**/collections/*', 
     'static_dev/javascripts/**/views/*',
     'static_dev/javascripts/**/routers/*',
-  ], ['javascript']);
-  gulp.watch('static_dev/coffeescripts/**/templates/*.eco', ['eco']);
-  gulp.watch('static_dev/scss/**/*.scss', ['sass']);
+  ], ['scripts-javascript', 'shell-apache']);
+  gulp.watch('static_dev/coffeescripts/**/templates/*.eco', ['scripts-eco', 'shell-apache']);
+  gulp.watch('static_dev/css/**/*.css', ['styles-css', 'shell-apache']);
+  gulp.watch('static_dev/scss/**/*.scss', ['styles-sass', 'shell-apache']);
   gulp.watch(['static/javascripts/*.js', 'static/stylesheets/*.css']).on('change', reload);
 });
 
 /* Shell tasks */
 
 // Quick ways of running python and client related tasks
-gulp.task('apache', $.shell.task(['sudo service httpd restart']))
-gulp.task('backbonescaffold', $.shell.task([
+gulp.task('shell-apache', $.shell.task(['sudo service httpd restart']))
+gulp.task('shell-backbonescaffold', $.shell.task([
   'mkdir static_dev/coffeescripts/' + argv.appname + '/models/',
   'mkdir static_dev/coffeescripts/' + argv.appname + '/collections/',
   'mkdir static_dev/coffeescripts/' + argv.appname + '/views/',
   'mkdir static_dev/coffeescripts/' + argv.appname + '/routers/',
   'mkdir static_dev/coffeescripts/' + argv.appname + '/templates/',
 ]))
-gulp.task('collectstatic', $.shell.task([
+gulp.task('shell-collectstatic', $.shell.task([
   'echo "yes" | ./manage.py collectstatic',
   'sudo service httpd restart',
 ]))
-gulp.task('startapp', $.shell.task([
+gulp.task('shell-startapp', $.shell.task([
   'django-admin.py startapp ' + argv.appname,
   'mkdir static_dev/coffeescripts/' + argv.appname,
   'mkdir static_dev/javascripts/' + argv.appname,
@@ -86,6 +93,7 @@ gulp.task('startapp', $.shell.task([
 ]))
 
 /* Main bower tasks */
+gulp.task('bower', ['bower-scripts', 'bower-styles']);
 
 /*  mainBowerFiles looks in an npm package's bower.json file
     for the 'main' entry - http://bower.io/docs/creating-packages/#main
@@ -122,11 +130,12 @@ gulp.task('bower-styles', function() {
 });
 
 /* Main scripts tasks */
+gulp.task('scripts', ['scripts-coffee', 'scripts-eco', 'scripts-javascript'])
 
 // Coffeescript task
 // If coding in coffee, this will compile and copy files to the 
 // static javascript directory
-gulp.task('coffee', function() {
+gulp.task('scripts-coffee', function() {
   var folders = getFolders(coffeescriptsPath);
   var tasks   = folders.map(function(folder) {
     return gulp.src(
@@ -158,7 +167,7 @@ gulp.task('coffee', function() {
 
 // ECO Template Task
 // Compiles and concats html.eco files used in Backbone
-gulp.task('eco', function() {
+gulp.task('scripts-eco', function() {
   var folders = getFolders(templatesPath);
   var tasks   = folders.map(function(folder) {
     return gulp.src('static_dev/coffeescripts/' + folder + '/templates/*.eco', 
@@ -180,9 +189,8 @@ gulp.task('eco', function() {
 
 // Javascript task
 // If coding in Javascript, this will concat, jshint, and uglify
-// Also converts to coffee and copies to coffeescripts directory
-// to keep folders in sync
-gulp.task('javascript', function() {
+// Copies files to the static javascript directory
+gulp.task('scripts-javascript', function() {
   var folders = getFolders(javascriptsPath);
   var tasks   = folders.map(function(folder) {
     return gulp.src(
@@ -209,10 +217,11 @@ gulp.task('javascript', function() {
 });
 
 /* Main styles tasks */
+gulp.task('styles', ['styles-css', 'styles-sass']);
 
 // CSS Task
 // Concats and minifies css files
-gulp.task('css', function() {
+gulp.task('styles-css', function() {
   var folders  = getFolders(cssPath);
   var tasks   = folders.map(function(folder) {
     return gulp.src('static_dev/css/' + folder + '/*.css',
@@ -236,7 +245,7 @@ gulp.task('css', function() {
 
 // SASS Task
 // Compiles, concats, minifies, and versions scss files
-gulp.task('sass', function() {
+gulp.task('styles-sass', function() {
   var folders = getFolders(sassPath);
   var tasks   = folders.map(function(folder) {
     return gulp.src('static_dev/scss/' + folder + '/*.scss',
@@ -272,10 +281,6 @@ gulp.task('sass', function() {
  
     This task needs to be run manually. It is not triggered by anything
     other than 'build' */
-
-/* Needs a bit of work/research
-   it works fine, but could be further
-   optimized */
 gulp.task('images', function() {
   var folders = getFolders(imagesPath);
   var tasks   = folders.map(function(folder) {
@@ -292,9 +297,5 @@ gulp.task('images', function() {
   return merge(tasks);
 });
 
-// Define the tasks
-gulp.task('default',  ['serve']);
-gulp.task('bower',    ['bower-scripts', 'bower-styles']);
-gulp.task('scripts',  ['coffee', 'eco', 'javascript'])
-gulp.task('styles',   ['css', 'sass']);
+// Build Task
 gulp.task('build',    ['bower', 'scripts', 'styles', 'images'])
