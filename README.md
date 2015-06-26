@@ -1,4 +1,4 @@
-## Django Starter Kit (v1.0)
+## Django Starter Kit (v1.1)
 
 ### Table of Contents
 - Introduction
@@ -24,7 +24,7 @@
 - Contributors
 
 ### Introduction
-Django Starter Kit (v 1.0) is a boilerplate for developing web applications. 
+Django Starter Kit (v 1.1) is a boilerplate for developing web applications. 
 **Built using Django v 1.7.8**
 
 ### Included Plugins
@@ -79,8 +79,9 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
         - `sudo vim /etc/httpd/conf.d/apache-config.conf`
         - make sure you replace the name of your virtualenv and the name of your project where applicable
 - Copy NPM requirements:
-    - `cp -r /vagrant/dependencies/node_modules /vagrant/html/your_project_name`
-    - `npm install --cache`
+    - `cp /vagrant/dependencies/node_modules.zip /vagrant/html/your_project_name`
+    - `unzip /vagrant/html/your_project_name/node_modules.zip`
+    - `rm /vagrant/html/your_project_name/node_modules.zip`
 - Create symlinks to gulp and bower
     - `ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp`
     - `ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower`
@@ -94,7 +95,7 @@ Django Starter Kit (v 1.0) is a boilerplate for developing web applications.
     - `./manage.py migrate`
     - `./manage.py collectstatic`
     - `./bower install` to install bower_components in your static_dev directory
-    - `./gulp bower`
+    - `./gulp build`
     - `sudo service httpd restart`
 
 ### Static File Management
@@ -111,17 +112,13 @@ The node package manager (NPM) is used to manage node javascript packages that a
 - run `npm install --cache`
 
 #### GulpJS
-The starter kit uses gulp to manage and automate client-side dependencies. For more info on gulp, please visit their website here - [GulpJS Docs](https://github.com/gulpjs/gulp/tree/master/docs). The available gulp commands are:
+The starter kit uses gulp to manage and automate client-side dependencies. For more info on gulp, please visit their website here - [GulpJS Docs](https://github.com/gulpjs/gulp/tree/master/docs). 
 
-- `./gulp serve`
-- `./gulp javascripts`
-- `./gulp coffee`
-- `./gulp eco`
-- `./gulp bower`
-- `./gulp sass`
-- `./gulp images`
+`./gulp help` will list available gulp main and sub-commands. The gulpfile.js file is heavily commented for more clarity.
 
-`./gulp build` will run all of the above commands except for serve. `./gulp serve` will run a proxy server for runserver or apache located at localhost:3000 that watches for changes in coffeescripts, javascripts, and sass files and run the appropriate gulp task and reload the browser using the browser-sync node package. `./gulp serve` should only be run in development
+`./gulp build` will build all of the projects dependencies (coffeescript or javascript, javascript templates, styles, and images). 
+
+`./gulp serve` will run a proxy server for apache located at https://vagrant.wharton.upenn.edu:3000 that watches for changes in coffeescripts, javascripts, and sass files and will run the appropriate gulp task, restart apache, and reload the browser using the browser-sync node package. `./gulp serve` should only be run in development
 
 #### Vendor Files
 Vendor files are managed through [bower](http://bower.io). Your vendor requirements should be added to the [bower.json](http://bower.io/docs/creating-packages/#bowerjson) file in the dependencies section. You can search for [bower packages](http://bower.io/search "bower search") on bower's website.
@@ -131,12 +128,12 @@ After adding any additional requirements, run the following commands:
 <pre><code>./bower install
 ./gulp bower</code></pre>
 
-The bower install command installs vendor files to static_dev/bower_components. Running `./gulp bower` will concat and minimize all vendor files to static/javascripts/vendor.js and static/stylesheets/vendor.css
+The bower install command installs vendor files to static_dev/bower_components. Running `./gulp bower` will concat and minimize all vendor files to static/javascripts/vendor.min.js and static/stylesheets/vendor.css
 
 - add vendor javascripts to any template using:
 
 <pre><code>{% compress js %}
-    &lt;script type="text/javascript" src="{% static "javascripts/vendor.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/vendor.min.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 - add vendor Stylesheets to any template using:
@@ -179,14 +176,14 @@ If you don't want to use Backbone or Underscore in your app, then simply remove 
         |-- app
             |-- *.js</code></pre>
 
-When you are ready, run `./gulp javascripts` 
+When you are ready, run `./gulp scripts-javascripts` 
 
 - this will concat and minify javascripts
-- after the task is run, an app.js file will be placed in the static/javascripts/ directory
+- after the task is run, an app.min.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-    &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/app.min.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### CoffeeScripts
@@ -221,27 +218,27 @@ or without backbone:
         |-- app
             |-- *.coffee</code></pre>
 
-Run `./gulp coffee`
+Run `./gulp scripts-coffee`
 
 - this will compile, concat and minify coffeescripts
 - it will also copy compiled to javascript versions of the files into static_dev/javascripts
-- after the task is run, an app.js file will be placed in the static/javascripts/ directory
+- after the task is run, an app.min.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 
 <pre><code>{% compress js %}
-    &lt;script type="text/javascript" src="{% static "javascripts/app.js" %}"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="{% static "javascripts/app.min.js" %}"&gt;&lt;/script&gt;
 {% endcompress %}</code></pre>
 
 #### Stylesheets and SASS
 Place all sass (scss) stylesheets in static_dev/scss
 
-- run `./gulp sass`
-- sass files are combined, compiles, and minified
-- after the task is run, a custom.css file will be placed in the static/stylesheets directory
+- run `./gulp styles-sass`
+- sass files are combined, compiled, and minified
+- after the task is run, a app.min.css file will be placed in the static/stylesheets directory
 - add the file to any template with:
 
 <pre><code>{% compress css %}
-    &lt;link rel="stylesheet" href='{% static 'stylesheets/custom.css' %}' type="text/css" charset="utf-8"&gt;
+    &lt;link rel="stylesheet" href='{% static 'stylesheets/app.min.css' %}' type="text/css" charset="utf-8"&gt;
 {% endcompress %</code></pre>
 
 ### Error Handling with Rollbar
