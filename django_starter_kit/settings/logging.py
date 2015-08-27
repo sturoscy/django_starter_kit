@@ -11,25 +11,25 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 # To learn more about Django logging go here https://docs.djangoproject.com/en/1.7/topics/logging.
 
 LOGGING = {
-      'version': 1,
-      'disable_existing_loggers': False,
-      'formatters': {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
         'verbose': {
-           'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-           'datefmt' : "%d/%b/%Y %H:%M:%S"
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
         },
         'simple': {
-          'format': '%(levelname)s %(message)s',
+            'format': '%(levelname)s %(message)s',
         },
-      },
-      'filters': {
+    },
+    'filters': {
         'require_debug_false' : {
-          '()': 'django.utils.log.RequireDebugFalse',
+            '()': 'django.utils.log.RequireDebugFalse',
         },
         'require_debug_true': {
-              '()': 'django.utils.log.RequireDebugTrue',
+            '()': 'django.utils.log.RequireDebugTrue',
         },
-     },
+    },
     'handlers': {
         'file': {
             'level': 'DEBUG',
@@ -38,22 +38,22 @@ LOGGING = {
             'filename': BASE_DIR + '/logs/django.log', 
         },
         'console': {
-          'level': 'DEBUG',
-          'class': 'logging.StreamHandler',
-          'formatter': 'simple'
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
         },
         'mail_admins': {
-          'level': 'CRITICAL',
-          'filters' : ['require_debug_false'],
-          'class': 'django.utils.log.AdminEmailHandler',
+            'level': 'CRITICAL',
+            'filters' : ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
             'include_html': True,
         },
-     },
+    },
     'loggers': {
         'django.request': {
-          'handlers': ['file'],
-          'level': 'DEBUG',
-          'propagate': True,
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
         'django.request': {
             'handlers': ['console'],
@@ -61,9 +61,9 @@ LOGGING = {
             'propagate': True,
         },
         'django.security': {
-          'handlers': ['mail_admins'],
-          'level': 'CRITICAL',
-          'propagate': False,
+            'handlers': ['mail_admins'],
+            'level': 'CRITICAL',
+            'propagate': False,
         },
     },
 }

@@ -1,4 +1,6 @@
-CosignProtected On
-AuthType Cosign 
-Require valid-user 
-CosignRequireFactor  UPENN.EDU
+# Uncomment the lines below to enable Penn's cosign authentication
+#
+# CosignProtected On
+# AuthType Cosign 
+# Require valid-user 
+# CosignRequireFactor  UPENN.EDU

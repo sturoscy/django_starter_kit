@@ -24,24 +24,29 @@
 - Contributors
 
 ### Introduction
-Django Starter Kit (v 1.1) is a boilerplate for developing web applications. 
-**Built using Django v 1.7.8**
+Django Starter Kit (version 1.1) is a boilerplate for developing web applications. 
+**Built using Django 1.7.8**
 
-### Included Plugins
-- [Django Base Theme](https://github.com/chadwhitman/Django-Base-Theme)
-- [Django Bootstrap](https://github.com/dyve/django-bootstrap3)
-- [Django Compressor](https://github.com/django-compressor/django-compressor)
-- [Django Debug Toolbar](https://github.com/django-debug-toolbar/django-debug-toolbar)
-- [Django Filter](https://github.com/alex/django-filter)
-- [Django Pyodbc Azure](https://github.com/michiya/django-pyodbc-azure)
-- [Django Rest Framework](https://github.com/tomchristie/django-rest-framework/tree/master)
-- [Argparse](https://code.google.com/p/argparse/)
-- [Coverage](https://bitbucket.org/ned/coveragepy)
-- [Markdown](http://pythonhosted.org//Markdown/)
-- [Pyodbc](https://github.com/mkleehammer/pyodbc)
-- [Pytz](http://pythonhosted.org//pytz/)
-- [Rollbar](https://github.com/rollbar/pyrollbar)
-- [Sqlparse](https://github.com/andialbrecht/sqlparse)
+### Included Django Plugins
+- [argparse==1.2.1](https://code.google.com/p/argparse/)
+- [base-theme==1.0](https://github.com/chadwhitman/Django-Base-Theme)
+- [coverage==3.7.1](https://bitbucket.org/ned/coveragepy)
+- [django==1.7.8](https://github.com/django/django)
+- [django-appconf==1.0.1](https://github.com/jezdez/django-appconf)
+- [django-compressor==1.4](https://github.com/django-compressor/django-compressor)
+- [django-debug-toolbar==1.2.1](https://github.com/django-debug-toolbar/django-debug-toolbar)
+- [django-filter==0.9.2](https://github.com/alex/django-filter)
+- [django-pyodbc-azure==1.2.1](https://github.com/michiya/django-pyodbc-azure)
+- [djangorestframework==3.1.0](https://github.com/tomchristie/django-rest-framework/tree/master)
+- [Markdown==2.6.1](http://pythonhosted.org//Markdown/)
+- [pyodbc==3.0.10](https://github.com/mkleehammer/pyodbc)
+- [python-memcached==1.57](https://github.com/linsomniac/python-memcached)
+- [pytz==2014.7](http://pythonhosted.org//pytz/)
+- [PyYAML==3.11](https://github.com/yaml/pyyaml)
+- [requests==2.7.0](https://github.com/kennethreitz/requests)
+- [rollbar==0.9.9](https://github.com/rollbar/pyrollbar)
+- [six==1.9.0](https://github.com/kelp404/six)
+- [sqlparse==0.1.13](https://github.com/andialbrecht/sqlparse)
 
 ### Components & Standards
 - .gitignore file with editors, operating systems and Pythontemp files you want excluded.
@@ -57,7 +62,7 @@ Django Starter Kit (v 1.1) is a boilerplate for developing web applications.
 - node package manager (packages.json) file included for gulp dependencies
 
 ### Getting Started
-- Clone vagrant box
+1. Clone vagrant box
     - `git clone ssh://git@stash.wharton.upenn.edu:7999/caos/python-dev-node.git`
     - `cd python-dev-node`
     - `vagrant up` (go get coffee, this will take awhile)
@@ -66,7 +71,7 @@ Django Starter Kit (v 1.1) is a boilerplate for developing web applications.
         - follow steps 1 - 3 here - https://help.github.com/articles/generating-ssh-keys/ - to generate ssh keys
         - run `cat < ~/.ssh/id_rsa.pub` after generating your keys and copy the output
         - paste ssh keys to your stash account here - https://stash.wharton.upenn.edu/plugins/servlet/ssh/account/keys
-- From ssh session
+2. From ssh session
     - create virtualenv
         - `mkvirtualenv your_project_name`
         - `workon your_project_name`
@@ -78,36 +83,65 @@ Django Starter Kit (v 1.1) is a boilerplate for developing web applications.
     - update your apache-config.conf file
         - `sudo vim /etc/httpd/conf.d/apache-config.conf`
         - make sure you replace the name of your virtualenv and the name of your project where applicable
-- Copy NPM requirements:
-    - `cp /vagrant/dependencies/node_modules.zip /vagrant/html/your_project_name`
-    - `unzip /vagrant/html/your_project_name/node_modules.zip`
-    - `rm /vagrant/html/your_project_name/node_modules.zip`
-- Create symlinks to gulp and bower
-    - `ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp`
-    - `ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower`
-- Rename references to django_starter_kit in the Django project: 
+3. Rename references to django_starter_kit in the Django project: 
     - `find -name "*.py" -exec sed -r -i'' -e 's/django_starter_kit/your_project_name/g' {} \;`
     - mv your_project_name/django_starter_kit your_project_name/your_project_name  
-- Check the /vagrant/html/your_project_name/settings folder
+4. Check the /vagrant/html/your_project_name/settings folder
     - this folder contains various django settings that relate to different environments
-- Execute the following commands to get everything up and running.
+5. Execute the following commands to get everything up and running.
     - `pip install -r requirements.txt`
     - `./manage.py migrate`
     - `./manage.py collectstatic`
-    - `./bower install` to install bower_components in your static_dev directory
-    - `./gulp build`
     - `sudo service httpd restart`
+
+    #### Steps to get bower and gulp running (not required)
+
+6. Copy NPM requirements:
+    - `cp /vagrant/dependencies/node_modules.zip /vagrant/html/your_project_name`
+    - `unzip /vagrant/html/your_project_name/node_modules.zip`
+    - `rm /vagrant/html/your_project_name/node_modules.zip`
+7. Create symlinks to gulp and bower
+    - `ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp`
+    - `ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower`
+
+    #### Using cosign and Penn SSO
+
+8. Check the .htaccess file in the root of the project and uncomment the following lines:
+
+    CosignProtected On
+    AuthType Cosign 
+    Require valid-user 
+    CosignRequireFactor  UPENN.EDU
+
+9. In settings/base.py, uncomment 'penn.remote_user.PennRemoteUserBackend' in AUTHENTICATION_BACKENDS
+    - this will use django's [remote user](https://docs.djangoproject.com/en/1.7/howto/auth-remote-user/) back-end for authentication
+    - when a user signs in using Penn's SSO (from your app or any other), django will create a user in the auth_user table based off of the `PennRemoteUserBackend` class
+    - this will effectively protect the entire app behind Penn's login and still gives the user the ability to use django's request.user in a view or template
+
+10. For logging out, check the urls.py file and uncomment the lines as indicated in that file.
 
 ### Static File Management
 
 #### Overview
-The Django Starter Kit comes with two methods of client-side static file management - **collectstatic** and **gulp**. You will use **collectstatic** for any 3rd party plugins added via the requirements.txt file and subsequently placed in INSTALLED_APPS. For any internally developed apps, you will use **gulp** and the gulpfile.
+The Django Starter Kit comes with two methods of client-side static file management - **collectstatic** and **gulp**. Use of bower and gulp gives you more control over your static files, but is much more complicated to get up and running than collectstatic.
 
 ### Getting Started with Static Files
 
-#### Node and NPM
+#### Collectstatic
+The Django Starter Kit uses django's built-in static file management and is well-documented on [django's](https://docs.djangoproject.com/en/1.7/ref/contrib/staticfiles/) main site. In short, running collectstatic will look for static files in a few different places - see [STATICFILES_FINDERS](https://docs.djangoproject.com/en/1.7/ref/settings/#std:setting-STATICFILES_FINDERS)
+
+- in app directories as long as the app is in the INSTALLED_APPs tuple in settings/base.py
+    - django.contrib.staticfiles.finders.AppDirectoriesFinder
+    - for example, your_app_name/static/your_app_name/*.css|*.js
+- in the static_dev directory
+    - django.contrib.staticfiles.finders.FileSystemFinder
+    - for example, static_dev/javascripts/*.js and/or static_dev/css/*.css
+
+#### Node and NPM 
+#### Note: the following few sections can be skipped if you are not going to use node and npm
 The node package manager (NPM) is used to manage node javascript packages that are used in the gulp file (see below). 
 
+- make sure you complete steps 6 and 7 in **Getting Started**
 - add any additional npm packages to the included default packages.json file
 - run `npm install --cache`
 
@@ -255,13 +289,7 @@ Rollbar is a plugin that reports on your application's exceptions and errors. Le
 
 #### Installation
 
-    pip install rollbar
-
-Add to the bottom of your middleware classes:  
-
-    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware'
-
-Add this to your base.py file:
+Rollbar is already included in the requirements.txt file. Settings for rollbar are only included in the prod.py settings file (since we only want to use it for production). Check that file and replace the following with your info:
 
 <pre><code>ROLLBAR = {
     'access_token': 'POST_SERVER_ITEM_ACCESS_TOKEN',
