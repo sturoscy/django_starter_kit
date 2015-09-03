@@ -1,3 +1,5 @@
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 from penn.permissions import is_wharton_user
