@@ -64,7 +64,7 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 ### Getting Started
 1. Clone vagrant box
     - `git clone ssh://git@stash.wharton.upenn.edu:7999/vagrant/python-dev.git`
-    - `cd python-dev-node`
+    - `cd python-dev`
     - `vagrant up` (go get coffee, this will take awhile)
     - `vagrant ssh`
     - check the python-dev-node documentation at https://stash.wharton.upenn.edu/projects/CAOS/repos/python-dev-node/browse
