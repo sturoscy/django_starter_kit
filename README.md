@@ -107,13 +107,13 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 
 8. Check the .htaccess file in the root of the project and uncomment the following lines:
 
-    <pre><code>CosignProtected On
+    `CosignProtected On`
 
-    AuthType Cosign
+    `AuthType Cosign`
     
-    Require valid-user
+    `Require valid-user`
     
-    CosignRequireFactor  UPENN.EDU</pre></code>
+    `CosignRequireFactor  UPENN.EDU`
 
 9. See https://github.com/wharton/wharton-cosign-auth for more info on getting everything setup after updating the .htaccess file
 
