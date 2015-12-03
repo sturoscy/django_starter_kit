@@ -31,7 +31,7 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 - [argparse==1.2.1](https://code.google.com/p/argparse/)
 - [base-theme==1.0](https://github.com/chadwhitman/Django-Base-Theme)
 - [coverage==3.7.1](https://bitbucket.org/ned/coveragepy)
-- [django==1.7.8](https://github.com/django/django)
+- [django>=1.8,<1.9](https://github.com/django/django)
 - [django-appconf==1.0.1](https://github.com/jezdez/django-appconf)
 - [django-compressor==1.4](https://github.com/django-compressor/django-compressor)
 - [django-debug-toolbar==1.2.1](https://github.com/django-debug-toolbar/django-debug-toolbar)
@@ -40,7 +40,6 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 - [djangorestframework==3.1.0](https://github.com/tomchristie/django-rest-framework/tree/master)
 - [Markdown==2.6.1](http://pythonhosted.org//Markdown/)
 - [pyodbc==3.0.10](https://github.com/mkleehammer/pyodbc)
-- [python-memcached==1.57](https://github.com/linsomniac/python-memcached)
 - [pytz==2014.7](http://pythonhosted.org//pytz/)
 - [PyYAML==3.11](https://github.com/yaml/pyyaml)
 - [requests==2.7.0](https://github.com/kennethreitz/requests)
@@ -56,7 +55,7 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 	- project/settings/dev.py
 	- project/settings/vagrant.py
 - wsgi.py set up for develop, stage and production environments.
-- requirements.txt file that includes the above plugins and Django version 1.7.8
+- requirements.txt file that includes the above plugins and Django version >=1.8,<1.9
 - bower.json file included for managing third party javascript vendor files
 - gulpfile.js included for static files automation (javascripts, coffeescripts, sass, eco templates, etc.)
 - node package manager (packages.json) file included for gulp dependencies
@@ -113,12 +112,7 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
     Require valid-user 
     CosignRequireFactor  UPENN.EDU
 
-9. In settings/base.py, uncomment 'penn.remote_user.PennRemoteUserBackend' in AUTHENTICATION_BACKENDS
-    - this will use django's [remote user](https://docs.djangoproject.com/en/1.7/howto/auth-remote-user/) back-end for authentication
-    - when a user signs in using Penn's SSO (from your app or any other), django will create a user in the auth_user table based off of the `PennRemoteUserBackend` class
-    - this will effectively protect the entire app behind Penn's login and still gives the user the ability to use django's request.user in a view or template
-
-10. For logging out, check the urls.py file and uncomment the lines as indicated in that file.
+9. See https://github.com/wharton/wharton-cosign-auth for more info on getting everything setup after updating the .htaccess file
 
 ### Static File Management
 

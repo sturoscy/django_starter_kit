@@ -49,10 +49,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-# If using Penn's cosign SSO service, uncomment PennRemoteUserBackend and
-# check the .htaccess file included in the project root directory
 AUTHENTICATION_BACKENDS = (
-    # 'penn.remote_user.PennRemoteUserBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -104,10 +101,10 @@ DATABASES = {
 # Caching
 
 CACHES = {
-  "default": {
-    'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-    'LOCATION': 'localhost:11211',
-  }
+    "default": {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'instruction_cache',
+    }
 }
 
 # REST FRAMEWORK
