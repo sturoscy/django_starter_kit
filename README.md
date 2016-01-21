@@ -10,7 +10,6 @@
     - Getting Started with Static Files
     - Vendor Files
     - JavaScripts
-    - CoffeeScripts
     - Stylesheets and SASS
 - Error Handling with Rollbar
     - Overview
@@ -66,10 +65,9 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
     - `cd python-dev`
     - `vagrant up` (go get coffee, this will take awhile)
     - `vagrant ssh`
-    - check the python-dev-node documentation at https://stash.wharton.upenn.edu/projects/CAOS/repos/python-dev-node/browse
-        - follow steps 1 - 3 here - https://help.github.com/articles/generating-ssh-keys/ - to generate ssh keys
-        - run `cat < ~/.ssh/id_rsa.pub` after generating your keys and copy the output
-        - paste ssh keys to your stash account here - https://stash.wharton.upenn.edu/plugins/servlet/ssh/account/keys
+    - follow steps 1 - 3 here - https://help.github.com/articles/generating-ssh-keys/ - to generate ssh keys
+    - run `cat < ~/.ssh/id_rsa.pub` after generating your keys and copy the output
+    - paste ssh keys to your stash account here - https://stash.wharton.upenn.edu/plugins/servlet/ssh/account/keys
 2. From ssh session
     - create virtualenv
         - `mkvirtualenv your_project_name`
@@ -95,10 +93,9 @@ Django Starter Kit (version 1.1) is a boilerplate for developing web application
 
     #### Steps to get bower and gulp running (not required)
 
-6. Copy NPM requirements:
-    - `cp /vagrant/dependencies/node_modules.zip /vagrant/html/your_project_name`
-    - `unzip /vagrant/html/your_project_name/node_modules.zip`
-    - `rm /vagrant/html/your_project_name/node_modules.zip`
+6. Clone NPM requirements:
+    - `git clone https://stash.wharton.upenn.edu/scm/caos/node-modules.git in your project root`
+    - `cd node-modules/; unzip -q node_modules.zip -d ../; cd ../; rm -r node_modules;`
 7. Create symlinks to gulp and bower
     - `ln -s /vagrant/html/your_project_name/node_modules/gulp/bin/gulp.js /vagrant/html/your_project_name/gulp`
     - `ln -s /vagrant/html/your_project_name/node_modules/bower/bin/bower /vagrant/html/your_project_name/bower`
@@ -147,9 +144,9 @@ The starter kit uses gulp to manage and automate client-side dependencies. For m
 
 `./gulp help` will list available gulp main and sub-commands. The gulpfile.js file is heavily commented for more clarity.
 
-`./gulp build` will build all of the projects dependencies (coffeescript or javascript, javascript templates, styles, and images). 
+`./gulp build` will build all of the projects dependencies (javascript, styles, and images). 
 
-`./gulp serve` will run a proxy server for apache located at https://vagrant.wharton.upenn.edu:3000 that watches for changes in coffeescripts, javascripts, and sass files and will run the appropriate gulp task, restart apache, and reload the browser using the browser-sync node package. `./gulp serve` should only be run in development
+`./gulp serve` will run a proxy server for apache located at https://vagrant.wharton.upenn.edu:3000 that watches for changes in javascripts and sass files and will run the appropriate gulp task, restart apache, and reload the browser using the browser-sync node package. `./gulp serve` should only be run in development
 
 #### Vendor Files
 Vendor files are managed through [bower](http://bower.io). Your vendor requirements should be added to the [bower.json](http://bower.io/docs/creating-packages/#bowerjson) file in the dependencies section. You can search for [bower packages](http://bower.io/search "bower search") on bower's website.
@@ -176,83 +173,32 @@ The bower install command installs vendor files to static_dev/bower_components. 
 - if you add additional vendor files to bower.json, you will need to re-run `./bower install` and `./gulp bower`
 
 #### JavaScripts
-The Starter Kit comes with Backbone and Underscore installed via the bower.json file. Backbone apps are scaffolded as follows:
+The Starter Kit comes with [ReactJS](https://facebook.github.io/react/) installed via the bower.json file. React apps are scaffolded as follows:
 
 <pre><code>|-- static_dev
     |-- javascripts
         |-- app1
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.js
+            |-- components
+            |-- app.js
         |-- app2
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.js
+            |-- components
+            |-- app.js
         ...
         |-- appn
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.js</code></pre>
+            |-- components
+            |-- app.js</code></pre>
 
-If you don't want to use Backbone or Underscore in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
+If you don't want to use React in your app, then simply remove the entries in the bower.json file and scaffold your javascripts directory however you like, keeping with the following structure:
 
 <pre><code>|-- static_dev
     |-- javascripts
         |-- app
             |-- *.js</code></pre>
 
-When you are ready, run `./gulp scripts-javascripts` 
+When you are ready, run `./gulp scripts-browserify` 
 
-- this will concat and minify javascripts
-- after the task is run, an app.min.js file will be placed in the static/javascripts/ directory
-- add the file to any template with:
-
-<pre><code>{% compress js %}
-    &lt;script type="text/javascript" src="{% static "javascripts/app.min.js" %}"&gt;&lt;/script&gt;
-{% endcompress %}</code></pre>
-
-#### CoffeeScripts
-CoffeeScripts are scaffolded the same way as javascripts:
-
-<pre><code>|-- static_dev
-    |-- coffescripts
-        |-- app1
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.coffee
-        |-- app2
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.coffee
-        ...
-        |-- appn
-            |-- models
-            |-- collections
-            |-- views
-            |-- routers
-            |-- main.coffee</code></pre>
-
-or without backbone:
-
-<pre><code>|-- static_dev
-    |-- coffeescripts
-        |-- app
-            |-- *.coffee</code></pre>
-
-Run `./gulp scripts-coffee`
-
-- this will compile, concat and minify coffeescripts
-- it will also copy compiled to javascript versions of the files into static_dev/javascripts
+- this will babelify, concat, and minify javascripts
+- with babel and browserify, you can write native JSX and even ES2015 javascript 
 - after the task is run, an app.min.js file will be placed in the static/javascripts/ directory
 - add the file to any template with:
 

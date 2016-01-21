@@ -2,9 +2,7 @@
   "name": "django_starter_kit",
   "private": true,
   "dependencies": {
-    "jquery-ui": "1.11.4",
-    "underscore": "~1.8.2",
-    "backbone": "~1.1.2",
-    "q": "~1.0.1"
+    "react": "~0.14.6",
+    "react-bootstrap": "~0.28.2"
   }
 }

@@ -107,6 +107,13 @@ CACHES = {
     }
 }
 
+# Sessions
+
+SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
+SESSION_CACHE_ALIAS = "default"
+SESSION_SERIALIZER = "django.contrib.sessions.serializers.PickleSerializer"
+
+
 # REST FRAMEWORK
 
 REST_FRAMEWORK = {
@@ -160,8 +167,3 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static_dev"),
 )
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-
-# Additional non-django settings
-
-WISP_TOKEN = 'YOUR_WISP_TOKEN'
